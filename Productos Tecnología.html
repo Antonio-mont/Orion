@@ -1,0 +1,151 @@
+  <div class="container">
+    <div class="imagenes">
+      <img id="producto-imagen" src="" alt="Producto" style="max-width:300px;height:auto;">
+    </div>
+
+    <div class="detalles">
+      <h2 id="producto-nombre"></h2>
+      <p><strong>Precio:</strong> <span id="producto-precio"></span></p>
+      <h3>Especificaciones:</h3>
+      <ul id="producto-especificaciones"></ul>
+
+      <!-- Botón con función de agregar -->
+      <button class="boton-carrito" id="boton-carrito">
+        Agregar al carrito
+      </button>
+    </div>
+  </div>
+
+  <script>
+    // Base de datos de productos
+    const productos = {
+      "audifonos-sony-whc-520": {
+        nombre: "Audífonos Sony WHC-520",
+        precio: 90,
+        imagen: "https://via.placeholder.com/300x300?text=Audifonos+Sony",
+        especificaciones: [
+          "Tipo: Over-Ear",
+          "Conexión: Bluetooth 5.2",
+          "Autonomía: 50 horas",
+          "Cancelación de ruido: Pasiva"
+        ]
+      },
+      "iphone-16": {
+        nombre: "iPhone 16",
+        precio: 1000,
+        imagen: "https://via.placeholder.com/300x300?text=iPhone+16",
+        especificaciones: [
+          "Pantalla: 6.1'' OLED",
+          "Procesador: A18 Bionic",
+          "Almacenamiento: 256 GB",
+          "Cámara: 48 MP"
+        ]
+      },
+      "playstation-5": {
+        nombre: "PlayStation 5",
+        precio: 500,
+        imagen: "https://via.placeholder.com/300x300?text=PS5",
+        especificaciones: [
+          "Resolución: 4K UHD",
+          "Almacenamiento: 1TB SSD",
+          "Mando: DualSense incluido",
+          "Soporte Ray Tracing"
+        ]
+      },
+      "smartwatch-galaxy-7": {
+        nombre: "Smart Watch Samsung Galaxy 7",
+        precio: 350,
+        imagen: "https://via.placeholder.com/300x300?text=Galaxy+Watch+7",
+        especificaciones: [
+          "Pantalla: AMOLED 1.4''",
+          "GPS y sensor cardiaco",
+          "Batería: 2 días aprox.",
+          "Resistencia al agua 5ATM"
+        ]
+      },
+      "laptop-razer-blade-18": {
+        nombre: "Laptop Razer Blade 18",
+        precio: 3500,
+        imagen: "https://via.placeholder.com/300x300?text=Razer+Blade+18",
+        especificaciones: [
+          "Pantalla: 18'' QHD+ 240Hz",
+          "Procesador: Intel i9 13th Gen",
+          "GPU: NVIDIA RTX 4090",
+          "RAM: 32GB DDR5"
+        ]
+      },
+      "tablet-galaxy-s6-lite": {
+        nombre: "Tablet Galaxy Tab S6 Lite",
+        precio: 400,
+        imagen: "https://via.placeholder.com/300x300?text=Galaxy+Tab+S6+Lite",
+        especificaciones: [
+          "Pantalla: 10.4'' TFT",
+          "S Pen incluido",
+          "Memoria: 64GB",
+          "Batería: 7040 mAh"
+        ]
+      },
+      "mouse-razer-viper": {
+        nombre: "Mouse Razer Viper",
+        precio: 80,
+        imagen: "https://via.placeholder.com/300x300?text=Razer+Viper",
+        especificaciones: [
+          "Sensor: Óptico 20K DPI",
+          "Peso: 69g",
+          "RGB personalizable",
+          "Cable Speedflex"
+        ]
+      },
+      "monitor-lg-ultragear-32": {
+        nombre: "Monitor Gamer LG Ultragear 32\"",
+        precio: 450,
+        imagen: "https://via.placeholder.com/300x300?text=LG+Ultragear+32",
+        especificaciones: [
+          "Resolución: QHD 2560x1440",
+          "Tasa de refresco: 165Hz",
+          "Tiempo de respuesta: 1ms",
+          "Panel: IPS HDR10"
+        ]
+      }
+    };
+
+    // Obtener el ID desde la URL
+    const params = new URLSearchParams(window.location.search);
+    const id = params.get('id');
+
+    const producto = productos[id];
+    if (producto) {
+      document.getElementById('producto-imagen').src = producto.imagen;
+      document.getElementById('producto-nombre').textContent = producto.nombre;
+      document.getElementById('producto-precio').textContent = `$${producto.precio}`;
+      const lista = document.getElementById('producto-especificaciones');
+      producto.especificaciones.forEach(esp => {
+        const li = document.createElement('li');
+        li.textContent = esp;
+        lista.appendChild(li);
+      });
+
+      document.getElementById('boton-carrito').onclick = () => {
+        agregarAlCarrito(producto.nombre, producto.precio, producto.imagen);
+      };
+    }
+
+    function agregarAlCarrito(nombre, precio, imagen) {
+      let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+      const index = carrito.findIndex(item => item.nombre === nombre);
+
+      if (index >= 0) {
+        carrito[index].cantidad += 1;
+      } else {
+        carrito.push({
+          nombre: nombre,
+          precio: precio,
+          imagen: imagen,
+          cantidad: 1
+        });
+      }
+
+      localStorage.setItem('carrito', JSON.stringify(carrito));
+      window.location.href = 'carrito.html';
+    }
+  </script>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mesa de Centro de Madera Maciza</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 0; }
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 20px;
+      background-color: #b38e5d;
+      position: sticky;
+      top: 0;
+    }
+    header h1 { font-size: 20px; margin: 0; }
+    header a {
+      text-decoration: none;
+      color: #000;
+      background: #ddd;
+      padding: 8px 12px;
+      border-radius: 6px;
+    }
+    .container { display: flex; gap: 40px; margin: 20px; flex-wrap: wrap; }
+    .imagenes { flex: 1; text-align: center; }
+    .imagenes img { max-width: 300px; height: auto; }
+    .detalles { flex: 1; min-width: 250px; }
+    h2 { margin-top: 0; }
+    ul { padding-left: 18px; }
+    .boton-carrito {
+      background: #222;
+      color: #fff;
+      padding: 10px 15px;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+      font-size: 16px;
+    }
+    .boton-carrito:hover { background: #444; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Orion & CO</h1>
+    <a href="carrito.html">Carrito</a>
+  </header>
+
+  <div class="container">
+    <div class="imagenes">
+      <img src="data:image/webp;base64,UklGRgoFAABXRUJQVlA4IP4EAAAwJQCdASq8ALsAPp1InEslp6Yhq1HpYPATiWlu1TtTsDZn4Mu3t9zWS7EiAX2fzGAeTdT9sMMLPB5g8weYPMHmDzB5PDFO7lk+nzZNQ0z7mFSmkJPRvtr2UVw7gN3Wk5mIXzdvbQh1enFaAzCzQsrjgfQAHWPp0qHk+/9LnOCpwGIn77c4KOBIyAyd6qGJnuXMH7s4IDRJcnU8pqdje5nxpjfxIUKckf3CAYxEwVnMce+lp50j6Q7ioP2yyTXNnEpvyOiKSdIIBwDkuuc9ceHZSPAtRhCAG5KlgGYPEWS0ihZS3X57v9VJS4Z5xt+YW4+t7XUlMY0MreRmR/ZAltNZcjiV63N2Sc/pR3rJMp6v7RBMymr9qNq9GJeiQHo0LlIczFJJJJJJJJJFb75g8weYAAAA/vhNAAAAAETPbVr9eFai+RP7HkIWMSVGzB+foy5KmzVsD6pQ909G4lJSoLAY2fqbtOYTK1T3cn8ESsolO5q8pIj781bKm31TnPk9/YMnpqls9rK/utmsu3e9FTrxnTf19pXPGMCe60DT+LIiHTOkhimOdolHhC6EUQqimc9M4Wunqn0uwQMZgVl3RqlW3S04Em//DYyx560CktH7WaxPdFa7y6ZavQvm8TsoJ/tIzr5vaHc1lLvu5OyiG1g5XuYBtXrcmDpDxqng6K9Z3i2BtRW4a0xn1ZnDhSHar5S60i0NIGdxIpCP3QIwlMF3ONnJGIYvwXnZM32tJSGqjtt6I6e/BRSsZbnyWXo/MhBHU36em6noVyKt07A54O0gpcakKyKiJvKxshNLMD6QtPJBwryqelxEj/N95CPFclKCxIUwvmp1HrfUq3K7GQwwEmk0EkYzPBDMkSxXG0OtTFZvzWF2eA8WAcv0J41D0qrcBtm5CmVDPuET8W/do3SP1DbO2nVyN9GVe3QG0oKrmSI13KvK+kITr0r+O7QZk+eH/SSTgCydZ0vUFZD1BXrqg7aoqtNeHOUuvTJKw3u3umT59O5mkXW/n6R6cs2CarInas5ADhTBoIJW921BrXIvxPP1D+tm3SAGjxu8oPIy7Hkoeu91dleasjMgBycyZW7u2GoJQbIacJvd9sshjIT7s2qYiGSSx7C+niz5YY4t7pQRFbPmoAulN56qQUMXOBGmlxVuXh6q6iXTyMC/jr87HSGsPKfoAd7fA5pVNw73bqUuw8yACoJfs2pcwVMR2U7Xvw29Bu9jJIFIuiwztXYgNSKDuJuVUzOEZFMnT/TwwXoMztK+yds3oo7vHw3hkaDRXEjLTYP3d8IMo60ah935pcZeM1ZH0Ncpcdx5NkOirNowEQsYkPEpi/3ZtMS7zqZKMtl8d6kmNfpA8D0htcteSbYQYHfOpUCMM7GgjbD1Wr3s0s97Dt+nliTVTyHP7ClL1B+v8UfW2b+4BO1N7P5kYBUMzSvRlxPp2f4NBnO5CSpo38DQlH/OFrCOMs7md8eEdRZOE7Ruyaet4Ay/QMWj8HQB6or67OW2ZChcKwB7u2sx8pmJ2wiBfvY3Ij9tlaNBz810+ckVfLLOcpb8F/dLwhNu901UmNWywsRSbiJQjIkip8tasqHY5WU1J2f4oCpAqF794XsghVGu+SuwlhlrTQ5k3O2ItdGwDgaoGcC1luHOttXdatMUNgjgnr+Qi8JKRKjn2eYt2Ui+788zJvBJFg02joQmDsgAAAAAAAA=" alt="Mouse Razer Viper">
+    </div>
+
+    <div class="detalles">
+      <h2>Mesa de Centro de Madera Maciza</h2>
+      <p><strong>Precio:</strong> $350</p>
+      <h3>Características:</h3>
+      <ul>
+        <li>Hecha de roble natural</li>
+        <li>Acabado barnizado mate</li>
+        <li>Espacio de almacenamiento inferior</li>
+      </ul>
+
+      <!-- Botón para agregar al carrito -->
+       <button class="boton-carrito"
+       onclick="agregarAlCarrito('Mesa de Centro de Madera Maciza', 350, 'data:image/webp;base64,UklGRgoFAABXRUJQVlA4IP4EAAAwJQCdASq8ALsAPp1InEslp6Yhq1HpYPATiWlu1TtTsDZn4Mu3t9zWS7EiAX2fzGAeTdT9sMMLPB5g8weYPMHmDzB5PDFO7lk+nzZNQ0z7mFSmkJPRvtr2UVw7gN3Wk5mIXzdvbQh1enFaAzCzQsrjgfQAHWPp0qHk+/9LnOCpwGIn77c4KOBIyAyd6qGJnuXMH7s4IDRJcnU8pqdje5nxpjfxIUKckf3CAYxEwVnMce+lp50j6Q7ioP2yyTXNnEpvyOiKSdIIBwDkuuc9ceHZSPAtRhCAG5KlgGYPEWS0ihZS3X57v9VJS4Z5xt+YW4+t7XUlMY0MreRmR/ZAltNZcjiV63N2Sc/pR3rJMp6v7RBMymr9qNq9GJeiQHo0LlIczFJJJJJJJJJFb75g8weYAAAA/vhNAAAAAETPbVr9eFai+RP7HkIWMSVGzB+foy5KmzVsD6pQ909G4lJSoLAY2fqbtOYTK1T3cn8ESsolO5q8pIj781bKm31TnPk9/YMnpqls9rK/utmsu3e9FTrxnTf19pXPGMCe60DT+LIiHTOkhimOdolHhC6EUQqimc9M4Wunqn0uwQMZgVl3RqlW3S04Em//DYyx560CktH7WaxPdFa7y6ZavQvm8TsoJ/tIzr5vaHc1lLvu5OyiG1g5XuYBtXrcmDpDxqng6K9Z3i2BtRW4a0xn1ZnDhSHar5S60i0NIGdxIpCP3QIwlMF3ONnJGIYvwXnZM32tJSGqjtt6I6e/BRSsZbnyWXo/MhBHU36em6noVyKt07A54O0gpcakKyKiJvKxshNLMD6QtPJBwryqelxEj/N95CPFclKCxIUwvmp1HrfUq3K7GQwwEmk0EkYzPBDMkSxXG0OtTFZvzWF2eA8WAcv0J41D0qrcBtm5CmVDPuET8W/do3SP1DbO2nVyN9GVe3QG0oKrmSI13KvK+kITr0r+O7QZk+eH/SSTgCydZ0vUFZD1BXrqg7aoqtNeHOUuvTJKw3u3umT59O5mkXW/n6R6cs2CarInas5ADhTBoIJW921BrXIvxPP1D+tm3SAGjxu8oPIy7Hkoeu91dleasjMgBycyZW7u2GoJQbIacJvd9sshjIT7s2qYiGSSx7C+niz5YY4t7pQRFbPmoAulN56qQUMXOBGmlxVuXh6q6iXTyMC/jr87HSGsPKfoAd7fA5pVNw73bqUuw8yACoJfs2pcwVMR2U7Xvw29Bu9jJIFIuiwztXYgNSKDuJuVUzOEZFMnT/TwwXoMztK+yds3oo7vHw3hkaDRXEjLTYP3d8IMo60ah935pcZeM1ZH0Ncpcdx5NkOirNowEQsYkPEpi/3ZtMS7zqZKMtl8d6kmNfpA8D0htcteSbYQYHfOpUCMM7GgjbD1Wr3s0s97Dt+nliTVTyHP7ClL1B+v8UfW2b+4BO1N7P5kYBUMzSvRlxPp2f4NBnO5CSpo38DQlH/OFrCOMs7md8eEdRZOE7Ruyaet4Ay/QMWj8HQB6or67OW2ZChcKwB7u2sx8pmJ2wiBfvY3Ij9tlaNBz810+ckVfLLOcpb8F/dLwhNu901UmNWywsRSbiJQjIkip8tasqHY5WU1J2f4oCpAqF794XsghVGu+SuwlhlrTQ5k3O2ItdGwDgaoGcC1luHOttXdatMUNgjgnr+Qi8JKRKjn2eYt2Ui+788zJvBJFg02joQmDsgAAAAAAAA=')">
+      Agregar al carrito
+    </button>
+
+      <script>
+        function agregarAlCarrito(nombre, precio, imagen) {
+          let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+          const index = carrito.findIndex(item => item.nombre === nombre);
+
+          if (index >= 0) {
+            carrito[index].cantidad += 1;
+          } else {
+            carrito.push({
+              nombre: nombre,
+              precio: precio,
+              imagen: imagen,
+              cantidad: 1
+            });
+          }
+
+          localStorage.setItem('carrito', JSON.stringify(carrito));
+          window.location.href = 'carrito.html';
+        }
+      </script>
+    </div>

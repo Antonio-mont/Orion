@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Iphone 16</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 0; }
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 20px;
+      background-color: #b38e5d; /* barra superior beige */
+      position: sticky;
+      top: 0;
+    }
+    header h1 { font-size: 20px; margin: 0; }
+    header a {
+      text-decoration: none;
+      color: #000;
+      background: #ddd;
+      padding: 8px 12px;
+      border-radius: 6px;
+    }
+    .container { display: flex; gap: 40px; margin: 20px; }
+    .imagenes { flex: 1; text-align: center; }
+    .imagenes img {
+      max-width: 300px; /* tamaño máximo */
+      height: auto;     /* mantiene la proporción */
+    }
+    .detalles { flex: 1; }
+    h2 { margin-top: 0; }
+    ul { padding-left: 18px; }
+    .boton-carrito {
+      background: #222;
+      color: #fff;
+      padding: 10px 15px;
+      border: none;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Orion & CO</h1>
+    <a href="carrito.html">Carrito</a>
+  </header>
+
+  <div class="container">
+    <div class="imagenes">
+      <img src="https://th.bing.com/th/id/OIP.BzrQH0Azx7GhX_38uoE3kQHaHa?w=168&h=180&c=7&r=0&o=7&pid=1.7&rm=3" alt="Audífonos Sony">
+    </div>
+
+    <div class="detalles">
+      <h2>Apple Iphone 16</h2>
+      <p><strong>Precio:</strong> $1000</p>
+      <h3>Especificaciones:</h3>
+      <ul>
+        <li>Pantalla 6.1"</li>
+        <li>Chip A18</li>
+        <li>Sistema operativo: iOS</li>
+        <li>Cámara Posterior 48 MP</li>
+      </ul>
+      <button class="boton-carrito" onclick="agregarYRedirigir()">Agregar al carrito</button>
+    </div>
+  </div>
+
+  <script>
+    function agregarAlCarrito(nombre, precio, imagen) {
+      let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+      const index = carrito.findIndex(item => item.nombre === nombre);
+
+      if (index !== -1) {
+        carrito[index].cantidad += 1;
+      } else {
+        carrito.push({
+          nombre: nombre,
+          precio: precio,
+          imagen: imagen,
+          cantidad: 1
+        });
+      }
+
+      localStorage.setItem('carrito', JSON.stringify(carrito));
+    }
+
+    function agregarYRedirigir() {
+      agregarAlCarrito(
+        'Apple Iphone 16',
+        1000,
+        'https://th.bing.com/th/id/OIP.BzrQH0Azx7GhX_38uoE3kQHaHa?w=168&h=180&c=7&r=0&o=7&pid=1.7&rm=3'
+      );
+      window.location.href = 'carrito.html';
+    }
+  </script>
+</body>
+</html>

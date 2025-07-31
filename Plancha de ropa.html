@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Plancha de ropa</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 0; }
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 20px;
+      background-color: #b38e5d;
+      position: sticky;
+      top: 0;
+    }
+    header h1 { font-size: 20px; margin: 0; }
+    header a {
+      text-decoration: none;
+      color: #000;
+      background: #ddd;
+      padding: 8px 12px;
+      border-radius: 6px;
+    }
+    .container { display: flex; gap: 40px; margin: 20px; }
+    .imagenes { flex: 1; text-align: center; }
+    .imagenes img {
+      max-width: 300px;
+      height: auto;
+    }
+    .detalles { flex: 1; }
+    h2 { margin-top: 0; }
+    ul { padding-left: 18px; }
+    .boton-carrito {
+      background: #222;
+      color: #fff;
+      padding: 10px 15px;
+      border: none;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Orion & CO</h1>
+    <a href="carrito.html">Carrito</a>
+  </header>
+
+  <div class="container">
+    <div class="imagenes">
+      <img src="https://www.ktronix.com/medias/050875818521-001-1400Wx1400H?context=bWFzdGVyfGltYWdlc3wxNDYxMDd8aW1hZ2UvanBlZ3xhVzFoWjJWekwyZzFOQzlvTkdNdk9UQTJOVGt3TURVM01qY3dNaTVxY0djfGRjZmJlZjdjNTNhNDk2NGI1ZjlhMGMwNzc4NTE5MjEyN2U4MjA0NjkwZmIzZWYyZDE4OTdiZTg0MjY5NGViOGI" alt="Plancha de ropa">
+    </div>
+
+    <div class="detalles">
+      <h2>Plancha de ropa</h2>
+      <p><strong>Precio:</strong> $50</p>
+      <h3>Especificaciones:</h3>
+      <ul>
+        <li>Garantía: 730 días / 24 meses</li>
+        <li>Modelo: IR3001</li>
+      </ul>
+      <!-- Botón que agrega al carrito -->
+      <button class="boton-carrito" onclick="agregarAlCarrito('Plancha de ropa', 50, 'https://www.ktronix.com/medias/050875818521-001-1400Wx1400H?context=bWFzdGVyfGltYWdlc3wxNDYxMDd8aW1hZ2UvanBlZ3xhVzFoWjJWekwyZzFOQzlvTkdNdk9UQTJOVGt3TURVM01qY3dNaTVxY0djfGRjZmJlZjdjNTNhNDk2NGI1ZjlhMGMwNzc4NTE5MjEyN2U4MjA0NjkwZmIzZWYyZDE4OTdiZTg0MjY5NGViOGI')">Agregar al carrito</button>
+
+      <script>
+        function agregarAlCarrito(nombre, precio, imagen) {
+          let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+          const index = carrito.findIndex(item => item.nombre === nombre);
+
+          if (index >= 0) {
+            carrito[index].cantidad += 1;
+          } else {
+            carrito.push({
+              nombre: nombre,
+              precio: precio,
+              imagen: imagen,
+              cantidad: 1
+            });
+          }
+
+          // Guardamos el carrito actualizado
+          localStorage.setItem('carrito', JSON.stringify(carrito));
+
+          // Redirigimos al carrito para mostrarlo inmediatamente
+          window.location.href = 'carrito.html';
+        }
+      </script>
+    </div>
+  </div>
+</body>
+</html>
+
+    

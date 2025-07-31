@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pagar - Orion & CO</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f8f3eb;
+    }
+    header {
+      background: #e2b577;
+      padding: 15px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    header h1 {
+      font-size: 22px;
+      margin: 0;
+      font-weight: bold;
+    }
+    .container {
+      max-width: 1000px;
+      margin: 30px auto;
+      padding: 20px;
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    h2 {
+      margin-bottom: 20px;
+      color: #5e4b30;
+      text-align: center;
+    }
+    .resumen {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .producto {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 15px;
+    }
+    .producto img {
+      width: 80px;
+      height: 80px;
+      object-fit: contain;
+      border-radius: 8px;
+    }
+    .producto-info {
+      flex: 1;
+    }
+    .totales {
+      text-align: right;
+      margin-top: 20px;
+      font-size: 18px;
+      color: #5e4b30;
+    }
+    .totales p {
+      margin: 8px 0;
+    }
+    .boton-confirmar {
+      display: block;
+      width: 100%;
+      background: #c5ab83;
+      color: #fff;
+      padding: 15px;
+      border: none;
+      font-size: 18px;
+      font-weight: bold;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-top: 25px;
+    }
+    .boton-confirmar:hover {
+      background: #b2956f;
+    }
+    .cupon {
+      margin-top: 20px;
+      display: flex;
+      gap: 10px;
+      justify-content: flex-end;
+    }
+    .cupon input {
+      padding: 8px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      flex: 1;
+      max-width: 200px;
+    }
+    .cupon button {
+      background: #e2b577;
+      border: none;
+      padding: 8px 15px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    footer {
+      text-align: center;
+      margin: 30px 0;
+      font-size: 14px;
+      color: #555;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>🛍️ Orion & CO.com</h1>
+    <div>Pago</div>
+  </header>
+
+  <div class="container">
+    <h2>Revisa tu compra</h2>
+    <div class="resumen" id="resumen-carrito">
+      <!-- Productos insertados con JS -->
+    </div>
+
+    <div class="cupon">
+      <input type="text" id="codigo-cupon" placeholder="Código de cupón">
+      <button onclick="aplicarCupon()">Aplicar</button>
+    </div>
+
+    <div class="totales">
+      <p>Subtotal: <span id="subtotal">$0</span></p>
+      <p>Total: <strong id="total">$0</strong></p>
+    </div>
+
+    <button class="boton-confirmar" onclick="confirmarCompra()">Confirmar compra</button>
+  </div>
+
+  <footer>
+    © 2025 Orion & CO - Pagos seguros con Visa / Mastercard
+  </footer>
+
+  <script>
+    let descuento = 0;
+
+    function mostrarResumen() {
+      let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+      let resumen = document.getElementById('resumen-carrito');
+      let subtotal = 0;
+      resumen.innerHTML = "";
+
+      if (carrito.length === 0) {
+        resumen.innerHTML = "<p>No tienes productos en el carrito.</p>";
+        document.getElementById('subtotal').innerText = "$0";
+        document.getElementById('total').innerText = "$0";
+        return;
+      }
+
+      carrito.forEach(item => {
+        let totalItem = item.precio * item.cantidad;
+        subtotal += totalItem;
+
+        let div = document.createElement('div');
+        div.className = "producto";
+        div.innerHTML = `
+          <img src="${item.imagen}" alt="${item.nombre}">
+          <div class="producto-info">
+            <p><strong>${item.nombre}</strong></p>
+            <p>Cantidad: ${item.cantidad}</p>
+            <p>$${item.precio} c/u</p>
+          </div>
+          <div><strong>$${totalItem}</strong></div>
+        `;
+        resumen.appendChild(div);
+      });
+
+      document.getElementById('subtotal').innerText = "$" + subtotal;
+      let total = subtotal - descuento;
+      document.getElementById('total').innerText = "$" + total;
+    }
+
+    function aplicarCupon() {
+      let codigo = document.getElementById('codigo-cupon').value.trim();
+      if (codigo.toLowerCase() === "descuento10") {
+        descuento = 10;
+        alert("Cupón aplicado: -$10");
+      } else {
+        descuento = 0;
+        alert("Cupón no válido");
+      }
+      mostrarResumen();
+    }
+
+    function confirmarCompra() {
+      alert("¡Gracias por tu compra!");
+      localStorage.removeItem('carrito');
+      window.location.href = "Menu de productos.html";
+    }
+
+    mostrarResumen();
+  </script>
+</body>
+</html>

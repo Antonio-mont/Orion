@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sofa individual</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 0; }
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 20px;
+      background-color: #b38e5d; /* barra superior beige */
+      position: sticky;
+      top: 0;
+    }
+    header h1 { font-size: 20px; margin: 0; }
+    header a {
+      text-decoration: none;
+      color: #000;
+      background: #ddd;
+      padding: 8px 12px;
+      border-radius: 6px;
+    }
+    .container { display: flex; gap: 40px; margin: 20px; }
+    .imagenes { flex: 1; text-align: center; }
+    .imagenes img {
+      max-width: 300px; /* tamaño máximo */
+      height: auto;     /* mantiene la proporción */
+    }
+    .detalles { flex: 1; }
+    h2 { margin-top: 0; }
+    ul { padding-left: 18px; }
+    .boton-carrito {
+      background: #222;
+      color: #fff;
+      padding: 10px 15px;
+      border: none;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Orion & CO</h1>
+    <a href="carrito.html">Carrito</a>
+  </header>
+
+  <div class="container">
+    <div class="imagenes">
+      <img src="https://tse2.mm.bing.net/th/id/OIP.mqzbsbyhh1iKaq2GYLWLPgAAAA?rs=1&pid=ImgDetMain&o=7&rm=3" alt="Sofa individual">
+    </div>
+
+    <div class="detalles">
+      <h2>Sofa individual</h2>
+      <p><strong>Precio:</strong> $250</p>
+      <h3>Especificaciones:</h3>
+      <ul>
+        <li>Tipo de sala: Sofá</li>
+        <li>Garantía: 365 días / 12 meses</li>
+        <li>Dimensiones: Alto 90 x Ancho 185 x Profundidad 87 cm aprox.</li>
+        <li>Color: Gris</li>
+      </ul>
+      <!-- Botón con función de agregar -->
+      <button class="boton-carrito" onclick="agregarAlCarrito('Sofa individual', 250, 'https://tse2.mm.bing.net/th/id/OIP.mqzbsbyhh1iKaq2GYLWLPgAAAA?rs=1&pid=ImgDetMain&o=7&rm=3')">
+        Agregar al carrito
+      </button>
+
+      <script>
+        function agregarAlCarrito(nombre, precio, imagen) {
+          let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+          const index = carrito.findIndex(item => item.nombre === nombre);
+
+          if (index >= 0) {
+            carrito[index].cantidad += 1;
+          } else {
+            carrito.push({
+              nombre: nombre,
+              precio: precio,
+              imagen: imagen,
+              cantidad: 1
+            });
+          }
+
+          localStorage.setItem('carrito', JSON.stringify(carrito));
+          // Redirigir al carrito inmediatamente
+          window.location.href = 'carrito.html';
+        }
+      </script>
+    </div>
+  </div>
+</body>
+</html>

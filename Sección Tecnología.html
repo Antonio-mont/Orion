@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Tecnología - Orion & CO.com</title>
+  <style>
+    /* Reset */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body { 
+      font-family: Arial, sans-serif; 
+      background-color: #f8f3eb; 
+      color: #333; 
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    .top-bar {
+      background-color: #e6cc9f;
+      text-align: center;
+      padding: 10px;
+      font-weight: bold;
+      font-size: 14px;
+      flex-shrink: 0;
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #e2b577;
+      padding: 15px 20px;
+      flex-wrap: wrap;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      flex-shrink: 0;
+    }
+
+    .logo { font-size: 20px; font-weight: bold; }
+
+    .search-container {
+      flex: 1;
+      margin: 10px 20px;
+      position: relative;
+      min-width: 200px;
+    }
+
+    .search {
+      width: 100%;
+      padding: 8px 12px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 14px;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .nav-links li { cursor: pointer; font-weight: 500; transition: color 0.3s; }
+    .nav-links li:hover { color: #7a674b; }
+
+    .icons {
+      font-size: 20px;
+      margin-left: 15px;
+      position: relative;
+    }
+
+    .icons a { text-decoration: none; color: black; }
+
+    #contador-carrito {
+      position: absolute;
+      top: -5px;
+      right: -10px;
+      background: red;
+      color: white;
+      font-size: 12px;
+      padding: 2px 6px;
+      border-radius: 50%;
+      display: none;
+    }
+
+    #sugerencias {
+      position: absolute;
+      background: white;
+      border: 1px solid #ccc;
+      max-width: 250px;
+      display: none;
+      flex-direction: column;
+      z-index: 100;
+      top: 38px;
+      width: 100%;
+    }
+    #sugerencias div { padding: 8px; cursor: pointer; }
+    #sugerencias div:hover { background: #f0f0f0; }
+
+    main {
+      flex-grow: 1;
+      background-color: #fffaf1;
+      padding: 40px 20px;
+      max-width: 1400px;
+      margin: 30px auto 50px;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+
+    main h2 {
+      margin-bottom: 10px;
+      color: #5e4b30;
+      font-size: 32px;
+    }
+
+    main p {
+      margin-bottom: 40px;
+      color: #555;
+      font-size: 18px;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .productos-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 40px 30px;
+      justify-content: center;
+    }
+
+    .producto {
+      background: #fff;
+      border-radius: 8px;
+      padding: 15px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      transition: transform 0.2s ease;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .producto:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+    }
+
+    .producto img {
+      width: 100%;
+      max-width: 280px;
+      height: 280px;
+      object-fit: contain;
+      border-radius: 5px;
+      margin-bottom: 15px;
+      background-color: #f9f9f9;
+    }
+
+    .producto h3 {
+      font-size: 20px;
+      font-weight: 600;
+      color: #3a2f14;
+      margin-bottom: 10px;
+      flex-grow: 1;
+    }
+
+    .producto h3 a { color: inherit; text-decoration: none; }
+
+    .producto .precio {
+      color: #b38e5d;
+      font-weight: bold;
+      font-size: 18px;
+      margin-top: auto;
+    }
+
+    @media (max-width: 1200px) {
+      .productos-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    @media (max-width: 900px) {
+      .productos-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 600px) {
+      .productos-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="top-bar">
+    ¡OFERTA ESPECIAL! Compra en cuotas sin intereses*
+  </div>
+
+  <nav class="navbar">
+    <div class="logo">🛍️ Orion & CO.com</div>
+
+    <div class="search-container">
+      <input type="text" class="search" placeholder="Buscar productos..." />
+      <div id="sugerencias"></div>
+    </div>
+
+    <ul class="nav-links">
+      <li><a href="contacto.html">Contacto</a></li>
+    </ul>
+
+    <div class="icons">
+      <a href="carrito.html">🛒</a>
+      <span id="contador-carrito">0</span>
+    </div>
+  </nav>
+
+  <main>
+    <h2>Tecnología</h2>
+    <p>Encuentra los mejores productos tecnológicos para tus necesidades diarias.</p>
+    <div class="productos-grid">
+      <div class="producto">
+        <img src=https://th.bing.com/th/id/OIP.sYRC9ZNwXSWfFh0dQaTKjgHaHa?w=194&h=194&c=7&r=0&o=7&pid=1.7&rm=3"" alt="Audifonos Sony WHC-520" />
+        <h3><a href="Audifonos Sony WHC-520.html">Audifonos Sony WHC-520</a></h3>
+        <p class="precio">$70</p>
+      </div>
+
+      <div class="producto">
+        <img src="https://th.bing.com/th/id/OIP.kiGkC1mRT0mXLso5irnYhQHaHa?w=172&h=180&c=7&r=0&o=7&pid=1.7&rm=3" alt="Iphone 16" />
+        <h3><a href="iphone 16.html">Iphone 16</a></h3>
+        <p class="precio">$1000</p>
+      </div>
+
+      <div class="producto">
+        <img src="data:image/webp;base64,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" alt="Play Station 5" />
+        <h3><a href="Play Station 5.html">Play Station 5</a></h3>
+        <p class="precio">$500</p>
+      </div>
+
+      <div class="producto">
+        <img src="data:image/webp;base64,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" alt="https://th.bing.com/th/id/OIP.ILPm2aD-0kMYTHfhplAV6AHaHa?w=177&h=180&c=7&r=0&o=7&pid=1.7&rm=3" />
+        <h3><a href="Samsung Smartwach.html">Smart Watch Samsung Galaxy 7</a></h3>
+        <p class="precio">$250</p>
+      </div>
+
+      <div class="producto">
+        <img src=https://th.bing.com/th/id/OIP.yZN5JALHNR7ZZyfVCfPCLQHaF4?w=225&h=180&c=7&r=0&o=5&pid=1.7"" alt="https://th.bing.com/th/id/OIP.h7leXGptLrRfnrUwp3LhMAHaD4?w=296&h=180&c=7&r=0&o=7&pid=1.7&rm=3" />
+        <h3><a href="Razer blade.html">Laptop Razer Blade 18</a></h3>
+        <p class="precio">$3000</p>
+      </div>
+
+      <div class="producto">
+        <img src="https://th.bing.com/th/id/OIP.IwrGEa9nSrb1EBNodOvOvwHaE8?w=290&h=193&c=7&r=0&o=7&pid=1.7&rm=3" alt="Tablet Galaxy tab s6 lite" />
+        <h3><a href="Tablet Galaxy S6.html">Tablet Galaxy tab s6 lite</a></h3>
+        <p class="precio">$350</p>
+      </div>
+
+      <div class="producto">
+        <img src="https://th.bing.com/th/id/OIP.ea6Ae6jBnraWdUQ-u23h2gHaID?w=165&h=180&c=7&r=0&o=7&pid=1.7&rm=3" alt="Mouse Razer Viper" />
+        <h3><a href="Mouse Razer Viper.html">Mouse Razer Viper</a></h3>
+        <p class="precio">$70</p>
+      </div>
+
+      <div class="producto">
+        <img src="https://th.bing.com/th/id/OIP.aNQHWHzRmj0X1Ohc4JUIJwHaHa?w=188&h=188&c=7&r=0&o=7&pid=1.7&rm=3" alt="Monitor gamer LG ultragear 32" />
+        <h3><a href="Monitor LG.html">Monitor gamer LG ultragear 32</a></h3>
+        <p class="precio">$450</p>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    const productos = [
+      { nombre: "audifonos sony whc-520", url: "producto.html?id=sony-whc520" },
+      { nombre: "iphone 16", url: "producto.html?id=iphone-16" },
+      { nombre: "play station 5", url: "producto.html?id=playstation-5" },
+      { nombre: "smart watch samsung galaxy 7", url: "producto.html?id=galaxy-watch-7" },
+      { nombre: "laptop razer blade 18", url: "producto.html?id=razer-blade-18" },
+      { nombre: "tablet galaxy tab s6 lite", url: "producto.html?id=galaxy-tab-s6-lite" },
+      { nombre: "mouse razer viper", url: "producto.html?id=razer-viper" },
+      { nombre: "monitor gamer lg ultragear 32", url: "producto.html?id=lg-ultragear-32" },
+    ];
+
+    const searchInput = document.querySelector(".search");
+    const sugerenciasDiv = document.getElementById("sugerencias");
+
+    function mostrarSugerencias(texto) {
+      sugerenciasDiv.innerHTML = "";
+      if (!texto) { 
+        sugerenciasDiv.style.display = "none"; 
+        return; 
+      }
+      const resultados = productos.filter(p => p.nombre.toLowerCase().includes(texto.toLowerCase()));
+      if (resultados.length === 0) { 
+        sugerenciasDiv.style.display = "none"; 
+        return; 
+      }
+      resultados.forEach(r => {
+        const div = document.createElement("div");
+        div.textContent = r.nombre;
+        div.onclick = () => { window.location.href = r.url; };
+        sugerenciasDiv.appendChild(div);
+      });
+      sugerenciasDiv.style.display = "flex";
+    }
+
+    searchInput.addEventListener("input", () => {
+      mostrarSugerencias(searchInput.value.trim());
+    });
+
+    searchInput.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") {
+        e.preventDefault();
+        const texto = searchInput.value.trim().toLowerCase();
+        const encontrado = productos.find(p => p.nombre.toLowerCase() === texto);
+        if (encontrado) {
+          window.location.href = encontrado.url;
+        } else {
+          alert("Producto no encontrado");
+        }
+      }
+    });
+
+    function actualizarContadorCarrito() {
+      const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+      const contador = document.getElementById("contador-carrito");
+      const total = carrito.reduce((acc, p) => acc + p.cantidad, 0);
+      if (total > 0) {
+        contador.textContent = total;
+        contador.style.display = "inline-block";
+      } else {
+        contador.style.display = "none";
+      }
+    }
+    actualizarContadorCarrito();
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Audifonos Sony WHC-520</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 0; }
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 20px;
+      background-color: #b38e5d;
+      position: sticky;
+      top: 0;
+    }
+    header h1 { font-size: 20px; margin: 0; }
+    header a {
+      text-decoration: none;
+      color: #000;
+      background: #ddd;
+      padding: 8px 12px;
+      border-radius: 6px;
+    }
+    .container { display: flex; gap: 40px; margin: 20px; }
+    .imagenes { flex: 1; text-align: center; }
+    .imagenes img {
+      max-width: 300px;
+      height: auto;
+    }
+    .detalles { flex: 1; }
+    h2 { margin-top: 0; }
+    ul { padding-left: 18px; }
+    .boton-carrito {
+      background: #222;
+      color: #fff;
+      padding: 10px 15px;
+      border: none;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Orion & CO</h1>
+    <a href="carrito.html">Carrito</a>
+  </header>
+
+  <div class="container">
+    <div class="imagenes">
+      <img src="https://th.bing.com/th/id/OIP.HwW1NOo9KnD1XpOXOX1TWgHaHa?w=187&h=187&c=7&r=0&o=7&pid=1.7&rm=3" alt="Audifonos sony">
+    </div>
+
+    <div class="detalles">
+      <h2>Sony Playstation-5</h2>
+      <p><strong>Precio:</strong> $500</p>
+      <h3>Especificaciones:</h3>
+      <ul>
+        <li>Consola next-gen</li>
+        <li>SSD ultrarrápido</li>
+         <li>Soporta 4K HDR</li>
+      </ul>
+      <!-- Botón que agrega al carrito -->
+     <button class="boton-carrito" onclick="agregarAlCarrito('PlayStation 5', 500, 'https://th.bing.com/th/id/OIP.xc3Aj9yqXN7UXnyHThJ2-gHaGG?w=229&h=187&c=7&r=0&o=7&pid=1.7&rm=3')">Agregar al carrito</button>
+
+      <script>
+        function agregarAlCarrito(nombre, precio, imagen) {
+          let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+          const index = carrito.findIndex(item => item.nombre === nombre);
+
+          if (index >= 0) {
+            carrito[index].cantidad += 1;
+          } else {
+            carrito.push({
+              nombre: nombre,
+              precio: precio,
+              imagen: imagen,
+              cantidad: 1
+            });
+          }
+
+          // Guardamos el carrito actualizado
+          localStorage.setItem('carrito', JSON.stringify(carrito));
+
+          // Redirigimos al carrito para mostrarlo inmediatamente
+          window.location.href = 'carrito.html';
+        }
+      </script>
+    </div>
+  </div>
+</body>
+</html>

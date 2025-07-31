@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aspiradora Dyson V15 Detect</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 0; }
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 20px;
+      background-color: #b38e5d;
+      position: sticky;
+      top: 0;
+    }
+    header h1 { font-size: 20px; margin: 0; }
+    header a {
+      text-decoration: none;
+      color: #000;
+      background: #ddd;
+      padding: 8px 12px;
+      border-radius: 6px;
+    }
+    .container { display: flex; gap: 40px; margin: 20px; flex-wrap: wrap; }
+    .imagenes { flex: 1; text-align: center; }
+    .imagenes img { max-width: 300px; height: auto; }
+    .detalles { flex: 1; min-width: 250px; }
+    h2 { margin-top: 0; }
+    ul { padding-left: 18px; }
+    .boton-carrito {
+      background: #222;
+      color: #fff;
+      padding: 10px 15px;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+      font-size: 16px;
+    }
+    .boton-carrito:hover { background: #444; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Orion & CO</h1>
+    <a href="carrito.html">Carrito</a>
+  </header>
+
+  <div class="container">
+    <div class="imagenes">
+      <img src="https://i5.walmartimages.com/asr/e00faeb0-3c67-40e7-876c-385d76f782c0.bf4ba911be92b0e91221f1eaf869c0e5.jpeg" alt="Mouse Razer Viper">
+    </div>
+
+    <div class="detalles">
+      <h2>Aspiradora Dyson V15 Detect</h2>
+      <p><strong>Precio:</strong> $350</p>
+      <h3>Características:</h3>
+      <ul>
+        <li>Tecnología láser para detectar polvo</li>
+        <li>Sin cable, batería de larga duración</li>
+        <li>Filtros avanzados para alérgenos</li>
+      </ul>
+
+      <!-- Botón para agregar al carrito -->
+       <button class="boton-carrito"
+       onclick="agregarAlCarrito('Aspiradora Dyson V15 Detect', 250, 'https://i5.walmartimages.com/asr/e00faeb0-3c67-40e7-876c-385d76f782c0.bf4ba911be92b0e91221f1eaf869c0e5.jpeg')">
+      Agregar al carrito
+    </button>
+
+      <script>
+        function agregarAlCarrito(nombre, precio, imagen) {
+          let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+          const index = carrito.findIndex(item => item.nombre === nombre);
+
+          if (index >= 0) {
+            carrito[index].cantidad += 1;
+          } else {
+            carrito.push({
+              nombre: nombre,
+              precio: precio,
+              imagen: imagen,
+              cantidad: 1
+            });
+          }
+
+          localStorage.setItem('carrito', JSON.stringify(carrito));
+          window.location.href = 'carrito.html';
+        }
+      </script>
+    </div>

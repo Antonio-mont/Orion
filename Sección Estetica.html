@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Orion & CO.com - Estética</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body { 
+      font-family: Arial, sans-serif; 
+      background-color: #f8f3eb; 
+      color: #333; 
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    .top-bar {
+      background-color: #e6cc9f;
+      text-align: center;
+      padding: 10px;
+      font-weight: bold;
+      font-size: 14px;
+      flex-shrink: 0;
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #e2b577;
+      padding: 15px 20px;
+      flex-wrap: wrap;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      flex-shrink: 0;
+    }
+
+    .logo {
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    .search-container {
+      flex: 1;
+      margin: 10px 20px;
+      position: relative;
+      min-width: 200px;
+    }
+
+    .search {
+      width: 100%;
+      padding: 8px 12px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 14px;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .nav-links li {
+      cursor: pointer;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+
+    .nav-links li:hover {
+      color: #7a674b;
+    }
+
+    .icons {
+      font-size: 20px;
+      margin-left: 15px;
+      position: relative;
+    }
+
+    .icons a {
+      text-decoration: none;
+      color: black;
+    }
+
+    #contador-carrito {
+      position: absolute;
+      top: -5px;
+      right: -10px;
+      background: red;
+      color: white;
+      font-size: 12px;
+      padding: 2px 6px;
+      border-radius: 50%;
+      display: none;
+    }
+
+    main {
+      flex-grow: 1;
+      background-color: #fffaf1;
+      padding: 40px 20px;
+      max-width: 1400px;
+      margin: 30px auto 50px;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+
+    main h2 {
+      margin-bottom: 10px;
+      color: #5e4b30;
+      font-size: 32px;
+    }
+
+    main p {
+      margin-bottom: 40px;
+      color: #555;
+      font-size: 18px;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .productos-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 40px 30px;
+      justify-content: center;
+    }
+
+    .producto {
+      background: #fff;
+      border-radius: 8px;
+      padding: 15px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      transition: transform 0.2s ease;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .producto:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+    }
+
+    .producto img {
+      width: 100%;
+      max-width: 280px;
+      height: 280px;
+      object-fit: cover;
+      border-radius: 5px;
+      margin-bottom: 15px;
+      background-color: #f9f9f9;
+    }
+
+    .producto h3 {
+      font-size: 20px;
+      font-weight: 600;
+      color: #3a2f14;
+      margin-bottom: 10px;
+      flex-grow: 1;
+    }
+
+    .producto h3 a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .producto .precio {
+      color: #b38e5d;
+      font-weight: bold;
+      font-size: 18px;
+      margin-top: auto;
+    }
+
+    @media (max-width: 1200px) {
+      .productos-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    @media (max-width: 900px) {
+      .productos-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 600px) {
+      .productos-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="top-bar">
+    ¡OFERTA ESPECIAL! Compra en cuotas sin intereses*
+  </div>
+
+  <nav class="navbar">
+    <div class="logo">🛍️ Orion & CO.com</div>
+
+    <div class="search-container">
+      <input type="text" class="search" placeholder="Buscar productos..." />
+    </div>
+
+    <ul class="nav-links">
+      <li><a href="contacto.html">Contacto</a></li>
+    </ul>
+
+    <div class="icons">
+      <a href="carrito.html">🛒</a>
+      <span id="contador-carrito">0</span>
+    </div>
+  </nav>
+
+  <main>
+    <h2>Estética</h2>
+    <p>Los mejores productos para el cuidado personal y la belleza.</p>
+    <div class="productos-grid">
+
+      <div class="producto">
+        <img src="https://th.bing.com/th/id/OIP.lp53TNpBAAVBuwjIZyr3FwHaEK?w=322&h=181&c=7&r=0&o=7&pid=1.7&rm=3" alt="Secador de Pelo Dyson Supersonic" />
+        <h3><a href="Secadora.html">Secador de Pelo Dyson Supersonic</a></h3>
+        <p class="precio">$200</p>
+      </div>
+
+      <div class="producto">
+        <img src="https://th.bing.com/th/id/OIP.mtAhjGMmP-yc6sS1U7ljoQHaHa?w=199&h=199&c=7&r=0&o=7&pid=1.7&rm=3" alt="Cepillo alisador GHD Platinum+" />
+        <h3><a href="GHD Platinum+.html">Cepillo alisador GHD Platinum+</a></h3>
+        <p class="precio">$70</p>
+      </div>
+
+      <div class="producto">
+        <img src="https://th.bing.com/th/id/OIP.zaxzyHx2bZk3lWqDvEcWcgHaHa?w=199&h=200&c=7&r=0&o=7&pid=1.7&rm=3" alt="Crema facial CeraVe" />
+        <h3><a href="Crema CeraVe.html">Crema facial CeraVe</a></h3>
+        <p class="precio">$20</p>
+      </div>
+
+      <div class="producto">
+        <img src="data:image/webp;base64,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" alt="Perfume Chanel No.5" />
+        <h3><a href="Chanel No.5.html">Perfume Chanel No.5</a></h3>
+        <p class="precio">$130</p>
+      </div>
+
+      <div class="producto">
+        <img src="https://th.bing.com/th/id/OIP.xqxWwp0ZwoPrgIjn-cnoNAHaHa?w=182&h=183&c=7&r=0&o=7&pid=1.7&rm=3" alt="Set de maquillaje Maybelline" />
+        <h3><a href="Maquillaje Maybeline.html">Set de maquillaje Maybelline</a></h3>
+        <p class="precio">$45</p>
+      </div>
+
+      <div class="producto">
+        <img src="https://th.bing.com/th/id/OIP.LIdNkZjfo5NKAvw6umws6AHaHa?w=198&h=199&c=7&r=0&o=7&pid=1.7&rm=3" alt="Mascarilla facial GlamGlow" />
+        <h3><a href="1 Million.html">1 Million</a></h3>
+        <p class="precio">$110</p>
+      </div>
+
+      <div class="producto">
+        <img src="https://th.bing.com/th/id/OIP.AzIANn9QifybH2WuyH5sYAHaHa?w=180&h=180&c=7&r=0&o=7&pid=1.7&rm=3" alt="Plancha para cabello Remington" />
+        <h3><a href="Plancha Remington.html">Plancha para cabello Remington</a></h3>
+        <p class="precio">$70</p>
+      </div>
+
+      <div class="producto">
+        <img src="https://th.bing.com/th/id/OIP.hbHduGnySZdavEfM_aYjogAAAA?w=185&h=185&c=7&r=0&o=7&pid=1.7&rm=3" />
+        <h3><a href="Real Technique Brochas.html">Set de brochas Real Techniques</a></h3>
+        <p class="precio">$30</p>
+      </div>
+
+    </div>
+  </main>
+
+</body>
+</html>
+

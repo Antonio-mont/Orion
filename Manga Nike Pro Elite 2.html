@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Manga Nike Pro Elite 2.0</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 0; }
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 20px;
+      background-color: #b38e5d;
+      position: sticky;
+      top: 0;
+    }
+    header h1 { font-size: 20px; margin: 0; }
+    header a {
+      text-decoration: none;
+      color: #000;
+      background: #ddd;
+      padding: 8px 12px;
+      border-radius: 6px;
+    }
+    .container { display: flex; gap: 40px; margin: 20px; flex-wrap: wrap; }
+    .imagenes { flex: 1; text-align: center; }
+    .imagenes img { max-width: 300px; height: auto; }
+    .detalles { flex: 1; min-width: 250px; }
+    h2 { margin-top: 0; }
+    ul { padding-left: 18px; }
+    .boton-carrito {
+      background: #222;
+      color: #fff;
+      padding: 10px 15px;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+      font-size: 16px;
+    }
+    .boton-carrito:hover { background: #444; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Orion & CO</h1>
+    <a href="carrito.html">Carrito</a>
+  </header>
+
+  <div class="container">
+    <div class="imagenes">
+      <img src="https://media.sportitude.com.au/d77f290a-27da-4d7f-ad09-1540a4e1b5e3__L.jpg" alt="Manga Nike Pro Elite 2.0">
+    </div>
+
+    <div class="detalles">
+      <h2>Manga Nike Pro Elite 2.0</h2>
+      <p><strong>Precio:</strong> $30</p>
+      <h3>Características:</h3>
+      <ul>
+        <li>Ventilación óptima para el flujo de aire</li>
+        <li>Material: Neopreno con tecnología DRI-FIT</li>
+        <li>Color: Negro</li>
+      </ul>
+      <!-- Botón para agregar al carrito -->
+      <button class="boton-carrito"
+        onclick="agregarAlCarrito('Manga Nike Pro Elite 2.0', 30, 'https://media.sportitude.com.au/d77f290a-27da-4d7f-ad09-1540a4e1b5e3__L.jpg')">
+        Agregar al carrito
+      </button>
+
+      <script>
+        function agregarAlCarrito(nombre, precio, imagen) {
+          let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+          const index = carrito.findIndex(item => item.nombre === nombre);
+
+          if (index >= 0) {
+            carrito[index].cantidad += 1;
+          } else {
+            carrito.push({
+              nombre: nombre,
+              precio: precio,
+              imagen: imagen,
+              cantidad: 1
+            });
+          }
+
+          localStorage.setItem('carrito', JSON.stringify(carrito));
+          window.location.href = 'carrito.html';
+        }
+      </script>
+    </div>
+  </div>
+</body>
+</html>

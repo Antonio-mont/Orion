@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Orion & CO.com - Muebles</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f8f3eb;
+      color: #333;
+    }
+    .top-bar {
+      background-color: #e6cc9f;
+      text-align: center;
+      padding: 10px;
+      font-weight: bold;
+      font-size: 14px;
+    }
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #e2b577;
+      padding: 15px 20px;
+      flex-wrap: wrap;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+    .logo {
+      font-size: 20px;
+      font-weight: bold;
+    }
+    .search-container {
+      flex: 1;
+      margin: 10px 20px;
+      position: relative;
+      min-width: 200px;
+    }
+    .search {
+      width: 100%;
+      padding: 8px 12px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 14px;
+    }
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .nav-links li {
+      cursor: pointer;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+    .nav-links li:hover {
+      color: #7a674b;
+    }
+    .icons {
+      font-size: 20px;
+      margin-left: 15px;
+      position: relative;
+    }
+    .icons a {
+      text-decoration: none;
+      color: black;
+    }
+    #contador-carrito {
+      position: absolute;
+      top: -5px;
+      right: -10px;
+      background: red;
+      color: white;
+      font-size: 12px;
+      padding: 2px 6px;
+      border-radius: 50%;
+      display: none;
+    }
+    main {
+      background-color: #fffaf1;
+      padding: 40px 20px;
+      max-width: 1400px;
+      margin: 30px auto 50px;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+    main h2 {
+      margin-bottom: 10px;
+      color: #5e4b30;
+      font-size: 32px;
+    }
+    main p {
+      margin-bottom: 40px;
+      color: #555;
+      font-size: 18px;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .productos-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 40px 30px;
+      justify-content: center;
+    }
+    .producto {
+      background: #fff;
+      border-radius: 8px;
+      padding: 15px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      transition: transform 0.2s ease;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .producto:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+    }
+    .producto img {
+      width: 100%;
+      max-width: 280px;
+      height: 280px;
+      object-fit: contain;
+      border-radius: 5px;
+      margin-bottom: 15px;
+      background-color: #f9f9f9;
+    }
+    .producto h3 {
+      font-size: 20px;
+      font-weight: 600;
+      color: #3a2f14;
+      margin-bottom: 10px;
+      flex-grow: 1;
+    }
+    .producto h3 a {
+      color: inherit;
+      text-decoration: none;
+    }
+    .producto .precio {
+      color: #b38e5d;
+      font-weight: bold;
+      font-size: 18px;
+      margin-top: auto;
+    }
+    @media (max-width: 1200px) {
+      .productos-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+    @media (max-width: 900px) {
+      .productos-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    @media (max-width: 600px) {
+      .productos-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="top-bar">
+    ¡OFERTA ESPECIAL! Compra en cuotas sin intereses*
+  </div>
+
+  <nav class="navbar">
+    <div class="logo">🛍️ Orion & CO.com</div>
+
+    <div class="search-container">
+      <input type="text" class="search" placeholder="Buscar productos..." />
+    </div>
+
+    <ul class="nav-links">
+      <li><a href="contacto.html">Contacto</a></li>
+    </ul>
+
+    <div class="icons">
+      <a href="carrito.html">🛒</a>
+      <span id="contador-carrito">0</span>
+    </div>
+  </nav>
+
+  <main>
+    <h2>Muebles</h2>
+    <p>Los muebles más modernos y cómodos para tu hogar y oficina.</p>
+    <div class="productos-grid">
+      <div class="producto">
+        <img src="https://th.bing.com/th/id/OIP.ox2ggujW56HL7ZcAOjpbVAHaE8?w=279&h=186&c=7&r=0&o=7&pid=1.7&rm=3" alt="Sofá seccional modular" />
+        <h3><a href="Sofa modular seccional.html">Sofá seccional modular</a></h3>
+        <p class="precio">$1200</p>
+      </div>
+      <div class="producto">
+        <img src="https://th.bing.com/th/id/OIP.VbOqa9dHkoXsmmMtAWCkWwHaHa?w=182&h=182&c=7&r=0&o=7&pid=1.7&rm=3" alt="Silla ergonómica Herman Miller" />
+        <h3><a href="Silla Herman Miller.html">Silla ergonómica Herman Miller</a></h3>
+        <p class="precio">$180</p>
+      </div>
+      <div class="producto">
+        <img src="data:image/webp;base64,UklGRgoFAABXRUJQVlA4IP4EAAAwJQCdASq8ALsAPp1InEslp6Yhq1HpYPATiWlu1TtTsDZn4Mu3t9zWS7EiAX2fzGAeTdT9sMMLPB5g8weYPMHmDzB5PDFO7lk+nzZNQ0z7mFSmkJPRvtr2UVw7gN3Wk5mIXzdvbQh1enFaAzCzQsrjgfQAHWPp0qHk+/9LnOCpwGIn77c4KOBIyAyd6qGJnuXMH7s4IDRJcnU8pqdje5nxpjfxIUKckf3CAYxEwVnMce+lp50j6Q7ioP2yyTXNnEpvyOiKSdIIBwDkuuc9ceHZSPAtRhCAG5KlgGYPEWS0ihZS3X57v9VJS4Z5xt+YW4+t7XUlMY0MreRmR/ZAltNZcjiV63N2Sc/pR3rJMp6v7RBMymr9qNq9GJeiQHo0LlIczFJJJJJJJJJFb75g8weYAAAA/vhNAAAAAETPbVr9eFai+RP7HkIWMSVGzB+foy5KmzVsD6pQ909G4lJSoLAY2fqbtOYTK1T3cn8ESsolO5q8pIj781bKm31TnPk9/YMnpqls9rK/utmsu3e9FTrxnTf19pXPGMCe60DT+LIiHTOkhimOdolHhC6EUQqimc9M4Wunqn0uwQMZgVl3RqlW3S04Em//DYyx560CktH7WaxPdFa7y6ZavQvm8TsoJ/tIzr5vaHc1lLvu5OyiG1g5XuYBtXrcmDpDxqng6K9Z3i2BtRW4a0xn1ZnDhSHar5S60i0NIGdxIpCP3QIwlMF3ONnJGIYvwXnZM32tJSGqjtt6I6e/BRSsZbnyWXo/MhBHU36em6noVyKt07A54O0gpcakKyKiJvKxshNLMD6QtPJBwryqelxEj/N95CPFclKCxIUwvmp1HrfUq3K7GQwwEmk0EkYzPBDMkSxXG0OtTFZvzWF2eA8WAcv0J41D0qrcBtm5CmVDPuET8W/do3SP1DbO2nVyN9GVe3QG0oKrmSI13KvK+kITr0r+O7QZk+eH/SSTgCydZ0vUFZD1BXrqg7aoqtNeHOUuvTJKw3u3umT59O5mkXW/n6R6cs2CarInas5ADhTBoIJW921BrXIvxPP1D+tm3SAGjxu8oPIy7Hkoeu91dleasjMgBycyZW7u2GoJQbIacJvd9sshjIT7s2qYiGSSx7C+niz5YY4t7pQRFbPmoAulN56qQUMXOBGmlxVuXh6q6iXTyMC/jr87HSGsPKfoAd7fA5pVNw73bqUuw8yACoJfs2pcwVMR2U7Xvw29Bu9jJIFIuiwztXYgNSKDuJuVUzOEZFMnT/TwwXoMztK+yds3oo7vHw3hkaDRXEjLTYP3d8IMo60ah935pcZeM1ZH0Ncpcdx5NkOirNowEQsYkPEpi/3ZtMS7zqZKMtl8d6kmNfpA8D0htcteSbYQYHfOpUCMM7GgjbD1Wr3s0s97Dt+nliTVTyHP7ClL1B+v8UfW2b+4BO1N7P5kYBUMzSvRlxPp2f4NBnO5CSpo38DQlH/OFrCOMs7md8eEdRZOE7Ruyaet4Ay/QMWj8HQB6or67OW2ZChcKwB7u2sx8pmJ2wiBfvY3Ij9tlaNBz810+ckVfLLOcpb8F/dLwhNu901UmNWywsRSbiJQjIkip8tasqHY5WU1J2f4oCpAqF794XsghVGu+SuwlhlrTQ5k3O2ItdGwDgaoGcC1luHOttXdatMUNgjgnr+Qi8JKRKjn2eYt2Ui+788zJvBJFg02joQmDsgAAAAAAAA=" alt="Mesa de centro de madera maciza" />
+        <h3><a href="Mesa de centro.html">Mesa de centro de madera maciza</a></h3>
+        <p class="precio">$350</p>
+      </div>
+      <div class="producto">
+        <img src="data:image/webp;base64,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" alt="Estantería industrial de metal" />
+        <h3><a href="Estante 5 niveles.html">Estantería industrial de metal</a></h3>
+        <p class="precio">$170</p>
+      </div>
+      <div class="producto">
+        <img src="https://tse1.mm.bing.net/th/id/OIP.cafv1TBX0n6EG_fLU28UmwHaHa?pid=ImgDet&w=206&h=206&c=7&o=7&rm=3" alt="Cama king size " />
+        <h3><a href="Cama King Size.html">Cama king size</a></h3>
+        <p class="precio">$650</p>
+      </div>
+      <div class="producto">
+        <img src="https://i0.wp.com/derika.com.mx/wp-content/uploads/2023/06/Antecomedor-Cordova-6-Sillas-01-Blanco.png?fit=510%2C510&ssl=1" alt="Escritorio de oficina ajustable" />
+        <h3><a href="Comedor en madera.html">Comedor de 6 sillas en madera</a></h3>
+        <p class="precio">$1000</p>
+      </div>
+      <div class="producto">
+        <img src="https://th.bing.com/th/id/OIP.AKlMMIm2YL0GAA6nMfoydQHaFj?w=217&h=180&c=7&r=0&o=7&pid=1.7&rm=3" alt="Silla lounge mid-century" />
+        <h3><a href="Mueble para TV.html">Mueble para TV con Almacenamiento</a></h3>
+        <p class="precio">$300</p>
+      </div>
+      <div class="producto">
+        <img src="https://tse2.mm.bing.net/th/id/OIP.mqzbsbyhh1iKaq2GYLWLPgAAAA?rs=1&pid=ImgDetMain&o=7&rm=3" alt="Sofa Individual" />
+        <h3><a href="Sofa individual.html">Sofa Individual</a></h3>
+        <p class="precio">$250</p>
+      </div>
+    </div>
+  </main>
+
+</body>
+</html>
