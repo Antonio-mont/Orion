@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Pagar - Orion & CO</title>
   <style>
     body {
@@ -123,7 +123,7 @@
     </div>
 
     <div class="cupon">
-      <input type="text" id="codigo-cupon" placeholder="Código de cupón">
+      <input type="text" id="codigo-cupon" placeholder="Código de cupón" />
       <button onclick="aplicarCupon()">Aplicar</button>
     </div>
 
@@ -162,7 +162,7 @@
         let div = document.createElement('div');
         div.className = "producto";
         div.innerHTML = `
-          <img src="${item.imagen}" alt="${item.nombre}">
+          <img src="${item.imagen}" alt="${item.nombre}" />
           <div class="producto-info">
             <p><strong>${item.nombre}</strong></p>
             <p>Cantidad: ${item.cantidad}</p>
@@ -193,10 +193,11 @@
     function confirmarCompra() {
       alert("¡Gracias por tu compra!");
       localStorage.removeItem('carrito');
-      window.location.href = "Menu de productos.html";
+      window.location.href = "index.html"; // Cambiado para redirigir a la página principal
     }
 
     mostrarResumen();
   </script>
 </body>
 </html>
+
