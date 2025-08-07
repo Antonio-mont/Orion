@@ -1,4 +1,4 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8">
@@ -17,10 +17,11 @@
     }
 
     body {
-      background: linear-gradient(to bottom, #3a2e2a, #1c1b1b), url("imagenes/franki-chamaki-ivfp_yxZuYQ-unsplash.jpg");
+      background: linear-gradient(to bottom, rgba(30, 25, 20, 0.8), rgba(20, 15, 10, 0.8)), 
+                  url("https://images.unsplash.com/photo-1604719312566-8912e9227c6a?q=80&w=774&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"); /* ← Cambia esta ruta por la de tu imagen */
       background-size: cover;
       background-position: center;
-      background-blend-mode: overlay;
+      background-repeat: no-repeat;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -28,20 +29,21 @@
     }
 
     .contenedor {
-      background-color: rgba(40, 30, 20, 0.9);
-      padding: 40px 35px;
+      background-color: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      padding: 40px;
       border-radius: 16px;
-      width: 100%;
+      width: 90%;
       max-width: 400px;
       text-align: center;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-      color: #f2e9e0;
+      color: #fff;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
     }
 
     .imagen-superior {
       width: 100%;
-      height: 120px;
-      background-image: url("imagenes/orion.png");
+      height: 100px;
+      background-image: url("imagenes/orion.png"); /* Puedes personalizar esta imagen */
       background-size: contain;
       background-repeat: no-repeat;
       background-position: center;
@@ -49,8 +51,8 @@
     }
 
     h2 {
-      margin-bottom: 20px;
       font-size: 24px;
+      margin-bottom: 20px;
       color: #ffe4b3;
     }
 
@@ -60,15 +62,14 @@
       width: 100%;
       padding: 12px;
       margin-bottom: 15px;
-      border: 1px solid #bfa380;
+      border: none;
       border-radius: 8px;
-      background-color: #f8f4f0;
-      color: #3a2d22;
+      background-color: rgba(255, 255, 255, 0.8);
+      color: #333;
     }
 
     input:focus {
-      border-color: #d6ba94;
-      outline: none;
+      outline: 2px solid #d6ba94;
     }
 
     button {
@@ -80,6 +81,7 @@
       font-size: 16px;
       cursor: pointer;
       transition: background-color 0.3s ease;
+      width: 100%;
     }
 
     button:hover {
@@ -92,7 +94,6 @@
       color: #ffd2b3;
     }
 
-    /* CARRUSEL DE TEXTO */
     .carrusel-texto {
       position: fixed;
       bottom: 20px;
@@ -125,9 +126,7 @@
 
   <div class="contenedor">
     <div class="imagen-superior"></div>
-
     <h2>Verificación de Acceso</h2>
-
     <form id="formulario" onsubmit="return validarFormulario()">
       <input type="text" id="usuario" placeholder="Nombre de usuario" required>
       <input type="password" id="contrasena" placeholder="Contraseña" required>
@@ -138,9 +137,8 @@
     </form>
   </div>
 
-  <!-- Carrusel de texto inferior -->
   <div class="carrusel-texto">
-    <span> ORION LA MEJOR TIENDA ONLINE PARA COMPRAS Y SERVICIOS ORION LA MEJOR TIENDA ONLINE PARA COMPRAS Y SERVICIOS &nbsp;&nbsp;&nbsp;ORION LA MEJOR TIENDA ONLINE PARA COMPRAS Y SERVICIOS ORION LA MEJOR TIENDA ONLINE PARA COMPRAS Y SERVICIOS &nbsp;&nbsp;&nbsp;
+    <span>ORION LA MEJOR TIENDA ONLINE PARA COMPRAS Y SERVICIOS &nbsp;&nbsp;&nbsp;ORION LA MEJOR TIENDA ONLINE PARA COMPRAS Y SERVICIOS</span>
   </div>
 
   <script>
@@ -165,11 +163,11 @@
         return false;
       }
 
-      mensaje.textContent = "Acceso exitoso. Redirigiendo...";
+      mensaje.textContent = "llevando a la pagina de inicio..";
       mensaje.style.color = "#c0ffcc";
 
       setTimeout(() => {
-        window.location.href = "menu.html"; // Cambia esta URL
+        window.location.href = "menu.html";
       }, 1500);
 
       return false;
@@ -178,11 +176,3 @@
 
 </body>
 </html>
-
-
-
-
-
-
-
-
