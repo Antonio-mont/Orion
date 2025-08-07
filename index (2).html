@@ -1,0 +1,187 @@
+<!DOCTYPE html> 
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Verificación de Usuario</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    html, body {
+      height: 100%;
+      width: 100%;
+    }
+
+    body {
+      background: linear-gradient(to bottom, #3a2e2a, #1c1b1b), url("imagenes/franki-chamaki-ivfp_yxZuYQ-unsplash.jpg");
+      background-size: cover;
+      background-position: center;
+      background-blend-mode: overlay;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+
+    .contenedor {
+      background-color: rgba(40, 30, 20, 0.9);
+      padding: 40px 35px;
+      border-radius: 16px;
+      width: 100%;
+      max-width: 400px;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      color: #f2e9e0;
+    }
+
+    .imagen-superior {
+      width: 100%;
+      height: 120px;
+      background-image: url("imagenes/orion.png");
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      margin-bottom: 20px;
+    }
+
+    h2 {
+      margin-bottom: 20px;
+      font-size: 24px;
+      color: #ffe4b3;
+    }
+
+    input[type="text"],
+    input[type="password"],
+    input[type="number"] {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 15px;
+      border: 1px solid #bfa380;
+      border-radius: 8px;
+      background-color: #f8f4f0;
+      color: #3a2d22;
+    }
+
+    input:focus {
+      border-color: #d6ba94;
+      outline: none;
+    }
+
+    button {
+      background-color: #8b5e3c;
+      color: #fff;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #6e4528;
+    }
+
+    #mensaje {
+      margin-top: 15px;
+      font-weight: bold;
+      color: #ffd2b3;
+    }
+
+    /* CARRUSEL DE TEXTO */
+    .carrusel-texto {
+      position: fixed;
+      bottom: 20px;
+      width: 100%;
+      overflow: hidden;
+      text-align: center;
+      z-index: 1000;
+    }
+
+    .carrusel-texto span {
+      display: inline-block;
+      padding-left: 100%;
+      white-space: nowrap;
+      font-size: 20px;
+      color: #ffe4b3;
+      animation: deslizar 12s linear infinite;
+    }
+
+    @keyframes deslizar {
+      0% {
+        transform: translateX(0%);
+      }
+      100% {
+        transform: translateX(-100%);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="contenedor">
+    <div class="imagen-superior"></div>
+
+    <h2>Verificación de Acceso</h2>
+
+    <form id="formulario" onsubmit="return validarFormulario()">
+      <input type="text" id="usuario" placeholder="Nombre de usuario" required>
+      <input type="password" id="contrasena" placeholder="Contraseña" required>
+      <p>Confirma este número: <strong id="codigoAleatorio"></strong></p>
+      <input type="number" id="codigoIngresado" placeholder="Ingresa el número mostrado" required>
+      <button type="submit">Acceder</button>
+      <p id="mensaje"></p>
+    </form>
+  </div>
+
+  <!-- Carrusel de texto inferior -->
+  <div class="carrusel-texto">
+    <span> ORION LA MEJOR TIENDA ONLINE PARA COMPRAS Y SERVICIOS ORION LA MEJOR TIENDA ONLINE PARA COMPRAS Y SERVICIOS &nbsp;&nbsp;&nbsp;ORION LA MEJOR TIENDA ONLINE PARA COMPRAS Y SERVICIOS ORION LA MEJOR TIENDA ONLINE PARA COMPRAS Y SERVICIOS &nbsp;&nbsp;&nbsp;
+  </div>
+
+  <script>
+    const numero = Math.floor(Math.random() * 9000) + 1000;
+    document.getElementById("codigoAleatorio").textContent = numero;
+
+    function validarFormulario() {
+      const usuario = document.getElementById("usuario").value.trim();
+      const contrasena = document.getElementById("contrasena").value.trim();
+      const codigoIngresado = parseInt(document.getElementById("codigoIngresado").value);
+      const mensaje = document.getElementById("mensaje");
+
+      if (usuario === "" || contrasena === "") {
+        mensaje.textContent = "Por favor, completa todos los campos.";
+        mensaje.style.color = "#ffb3b3";
+        return false;
+      }
+
+      if (codigoIngresado !== numero) {
+        mensaje.textContent = "El código ingresado no es correcto.";
+        mensaje.style.color = "#ffb3b3";
+        return false;
+      }
+
+      mensaje.textContent = "Acceso exitoso. Redirigiendo...";
+      mensaje.style.color = "#c0ffcc";
+
+      setTimeout(() => {
+        window.location.href = "pagina-destino.html"; // Cambia esta URL
+      }, 1500);
+
+      return false;
+    }
+  </script>
+
+</body>
+</html>
+
+
+
+
+
+
+
