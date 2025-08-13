@@ -1,202 +1,80 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Carrito</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #f8f3eb;
-    }
-    nav {
-      background: #e2b577;
-      padding: 15px 30px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    nav .logo {
-      font-size: 22px;
-      font-weight: bold;
-    }
-    nav .titulo {
-      font-size: 18px;
-      font-weight: bold;
-    }
-    section {
-      padding: 30px;
-    }
-    #contenedor-carrito {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
-      max-width: 1100px;
-      margin: 0 auto;
-    }
-    .producto-tarjeta {
-      background: #fff;
-      border-radius: 10px;
-      padding: 15px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-      text-align: center;
-    }
-    .producto-tarjeta img {
-      max-width: 100%;
-      max-height: 150px;
-      object-fit: contain;
-      border-radius: 8px;
-      margin-bottom: 10px;
-      display: block;
-      margin-left: auto;
-      margin-right: auto;
-    }
-    .producto-tarjeta h3 {
-      font-size: 18px;
-      margin: 10px 0;
-    }
-    .producto-tarjeta p.descripcion {
-      color: #555;
-      font-size: 14px;
-      margin: 5px 0 10px;
-    }
-    .producto-tarjeta p.precio {
-      font-size: 16px;
-      font-weight: bold;
-      margin: 5px 0;
-    }
-    .producto-tarjeta .cantidad-controls {
-      margin: 10px 0;
-    }
-    .producto-tarjeta .cantidad-controls button {
-      padding: 5px 10px;
-      cursor: pointer;
-    }
-    .producto-tarjeta p.subtotal {
-      font-size: 16px;
-      color: #5e4b30;
-      font-weight: bold;
-    }
-    .producto-tarjeta button.eliminar {
-      margin-top: 10px;
-      padding: 8px 12px;
-      background: #d9534f;
-      color: #fff;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-    #total-container {
-      max-width: 1100px;
-      margin: 30px auto;
-      text-align: right;
-      font-size: 20px;
-      font-weight: bold;
-      color: #5e4b30;
-    }
-    #btn-pagar-container {
-      text-align: center;
-      margin-top: 20px;
-    }
-    #btn-pagar {
-      background: #c5ab83;
-      color: #fff;
-      padding: 12px 25px;
-      border-radius: 8px;
-      text-decoration: none;
-      font-weight: bold;
-      font-size: 18px;
-      display: inline-block;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pagar - Orion & CO</title>
+    <link rel="stylesheet" href="estilos.css">
 </head>
 <body>
+    <!-- Barra de navegación -->
+    <nav class="navbar">
+        <div class="logo">
+            <a href="menu.html" style="text-decoration:none; color:inherit;">🛍️ Orion & CO.com</a>
+        </div>
+        <div class="titulo">Carrito</div>
+    </nav>
 
-  <!-- Barra superior -->
-  <nav>
-    <div class="logo">🛍️ Orion & CO.com</div>
-    <div class="titulo">Carrito</div>
-  </nav>
+    <!-- Contenedor principal -->
+    <main>
+        <section class="carrito">
+            <h1>Resumen de compra</h1>
+            <div id="lista-carrito">
+                <!-- Los productos del carrito se insertan dinámicamente aquí -->
+            </div>
+            <div class="total">
+                <h2>Total: <span id="total">0</span> USD</h2>
+            </div>
+            <button id="btnPagar">Finalizar compra</button>
+        </section>
+    </main>
 
-  <section>
-    <h2 style="text-align:center; margin-bottom:30px; color:#5e4b30;">Productos en tu carrito</h2>
+    <!-- Script de funcionalidad -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const listaCarrito = document.getElementById('lista-carrito');
+            const totalElement = document.getElementById('total');
+            const btnPagar = document.getElementById('btnPagar');
 
-    <div id="contenedor-carrito">
-      <!-- Productos insertados dinámicamente -->
-    </div>
+            // Obtener productos del carrito guardados en localStorage
+            let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
 
-    <div id="total-container">
-      Total: <span id="total">$0</span>
-    </div>
+            // Función para mostrar productos
+            function mostrarCarrito() {
+                listaCarrito.innerHTML = '';
+                let total = 0;
 
-    <div id="btn-pagar-container">
-      <!-- Enlace a pago.html -->
-      <a id="btn-pagar" href="pago.html">Ir a pagar</a>
-    </div>
-  </section>
+                carrito.forEach(producto => {
+                    const item = document.createElement('div');
+                    item.classList.add('item-carrito');
+                    item.innerHTML = `
+                        <h3>${producto.nombre}</h3>
+                        <p>Precio: ${producto.precio} USD</p>
+                        <p>Cantidad: ${producto.cantidad}</p>
+                        <hr>
+                    `;
+                    listaCarrito.appendChild(item);
+                    total += producto.precio * producto.cantidad;
+                });
 
-  <script>
-    function mostrarCarrito() {
-      let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
-      let contenedor = document.getElementById('contenedor-carrito');
-      let total = 0;
-      contenedor.innerHTML = "";
+                totalElement.textContent = total.toFixed(2);
+            }
 
-      if (carrito.length === 0) {
-        contenedor.innerHTML = "<p style='grid-column:1/-1; text-align:center;'>Tu carrito está vacío.</p>";
-        document.getElementById('total').innerText = "$0";
-        return;
-      }
+            // Función para pagar
+            btnPagar.addEventListener('click', () => {
+                if (carrito.length === 0) {
+                    alert('Tu carrito está vacío.');
+                    return;
+                }
+                alert('¡Gracias por tu compra!');
+                localStorage.removeItem('carrito');
+                carrito = [];
+                mostrarCarrito();
+            });
 
-      carrito.forEach((item, index) => {
-        let subtotal = item.precio * item.cantidad;
-        total += subtotal;
-
-        let tarjeta = document.createElement('div');
-        tarjeta.className = "producto-tarjeta";
-
-        tarjeta.innerHTML = `
-          <img src="${item.imagen}" alt="${item.nombre}">
-          <h3>${item.nombre}</h3>
-          <p class="descripcion">${item.descripcion || 'Sin descripción disponible'}</p>
-          <p class="precio">Precio: $${item.precio}</p>
-          <div class="cantidad-controls">
-            <button onclick="cambiarCantidad(${index}, -1)">-</button>
-            <span>${item.cantidad}</span>
-            <button onclick="cambiarCantidad(${index}, 1)">+</button>
-          </div>
-          <p class="subtotal">Subtotal: $${subtotal}</p>
-          <button class="eliminar" onclick="eliminarProducto(${index})">Eliminar</button>
-        `;
-
-        contenedor.appendChild(tarjeta);
-      });
-
-      document.getElementById('total').innerText = "$" + total;
-    }
-
-    function cambiarCantidad(index, cambio) {
-      let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
-      if (!carrito[index]) return;
-      carrito[index].cantidad += cambio;
-      if (carrito[index].cantidad <= 0) carrito.splice(index, 1);
-      localStorage.setItem('carrito', JSON.stringify(carrito));
-      mostrarCarrito();
-    }
-
-    function eliminarProducto(index) {
-      let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
-      carrito.splice(index, 1);
-      localStorage.setItem('carrito', JSON.stringify(carrito));
-      mostrarCarrito();
-    }
-
-    mostrarCarrito();
-  </script>
-
+            // Inicializar vista
+            mostrarCarrito();
+        });
+    </script>
 </body>
 </html>
-
-
-
