@@ -3,7 +3,6 @@
 <head>
   <meta charset="UTF-8">
   <title>Pagar - Orion & CO</title>
-
   <style>
     body {
       margin: 0;
@@ -115,92 +114,92 @@
   </style>
 </head>
 <body>
-  <header>
-    <h1><a href="menu.html">🛍️ Orion & CO.com</a></h1>
-    <div>Pago</div>
-  </header>
+<header>
+  <h1><a href="menu.html">🛍️ Orion & CO.com</a></h1>
+  <div>Pago</div>
+</header>
 
-  <div class="container">
-    <h2>Revisa tu compra</h2>
-    <div class="resumen" id="resumen-carrito">
-      <!-- Productos insertados con JS -->
-    </div>
-
-    <div class="cupon">
-      <input type="text" id="codigo-cupon" placeholder="Código de cupón" />
-      <button onclick="aplicarCupon()">Aplicar</button>
-    </div>
-
-    <div class="totales">
-      <p>Subtotal: <span id="subtotal">$0</span></p>
-      <p>Total: <strong id="total">$0</strong></p>
-    </div>
-
-    <button class="boton-confirmar" onclick="confirmarCompra()">Confirmar compra</button>
+<div class="container">
+  <h2>Revisa tu compra</h2>
+  <div class="resumen" id="resumen-carrito">
+    <!-- Productos insertados con JS -->
   </div>
 
-  <footer>
-    © 2025 Orion & CO - Pagos seguros con Visa / Mastercard
-  </footer>
+  <div class="cupon">
+    <input type="text" id="codigo-cupon" placeholder="Código de cupón" />
+    <button onclick="aplicarCupon()">Aplicar</button>
+  </div>
 
-  <script>
-    let descuento = 0;
+  <div class="totales">
+    <p>Subtotal: <span id="subtotal">$0</span></p>
+    <p>Total: <strong id="total">$0</strong></p>
+  </div>
 
-    function mostrarResumen() {
-      let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
-      let resumen = document.getElementById('resumen-carrito');
-      let subtotal = 0;
-      resumen.innerHTML = "";
+  <button class="boton-confirmar" onclick="confirmarCompra()">Confirmar compra</button>
+</div>
 
-      if (carrito.length === 0) {
-        resumen.innerHTML = "<p>No tienes productos en el carrito.</p>";
-        document.getElementById('subtotal').innerText = "$0";
-        document.getElementById('total').innerText = "$0";
-        return;
-      }
+<footer>
+  © 2025 Orion & CO - Pagos seguros con Visa / Mastercard
+</footer>
 
-      carrito.forEach(item => {
-        let totalItem = item.precio * item.cantidad;
-        subtotal += totalItem;
+<script>
+let descuento = 0;
 
-        let div = document.createElement('div');
-        div.className = "producto";
-        div.innerHTML = `
-          <img src="${item.imagen}" alt="${item.nombre}" />
-          <div class="producto-info">
-            <p><strong>${item.nombre}</strong></p>
-            <p>Cantidad: ${item.cantidad}</p>
-            <p>$${item.precio} c/u</p>
-          </div>
-          <div><strong>$${totalItem}</strong></div>
-        `;
-        resumen.appendChild(div);
-      });
+function mostrarResumen() {
+  let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+  let resumen = document.getElementById('resumen-carrito');
+  let subtotal = 0;
+  resumen.innerHTML = "";
 
-      document.getElementById('subtotal').innerText = "$" + subtotal;
-      let total = subtotal - descuento;
-      document.getElementById('total').innerText = "$" + total;
-    }
+  if (carrito.length === 0) {
+    resumen.innerHTML = "<p>No tienes productos en el carrito.</p>";
+    document.getElementById('subtotal').innerText = "$0";
+    document.getElementById('total').innerText = "$0";
+    return;
+  }
 
-    function aplicarCupon() {
-      let codigo = document.getElementById('codigo-cupon').value.trim();
-      if (codigo.toLowerCase() === "descuento10") {
-        descuento = 10;
-        alert("Cupón aplicado: -$10");
-      } else {
-        descuento = 0;
-        alert("Cupón no válido");
-      }
-      mostrarResumen();
-    }
+  carrito.forEach(item => {
+    let totalItem = item.precio * item.cantidad;
+    subtotal += totalItem;
 
-    function confirmarCompra() {
-      alert("¡Gracias por tu compra!");
-      localStorage.removeItem('carrito');
-      window.location.href = "index.html"; // Redirige a la página principal
-    }
+    let div = document.createElement('div');
+    div.className = "producto";
+    div.innerHTML = `
+      <img src="${item.imagen}" alt="${item.nombre}" />
+      <div class="producto-info">
+        <p><strong>${item.nombre}</strong></p>
+        <p>Cantidad: ${item.cantidad}</p>
+        <p>$${item.precio} c/u</p>
+      </div>
+      <div><strong>$${totalItem}</strong></div>
+    `;
+    resumen.appendChild(div);
+  });
 
-    mostrarResumen();
-  </script>
+  document.getElementById('subtotal').innerText = "$" + subtotal;
+  let total = subtotal - descuento;
+  document.getElementById('total').innerText = "$" + total;
+}
+
+function aplicarCupon() {
+  let codigo = document.getElementById('codigo-cupon').value.trim();
+  if (codigo.toLowerCase() === "descuento10") {
+    descuento = 10;
+    alert("Cupón aplicado: -$10");
+  } else {
+    descuento = 0;
+    alert("Cupón no válido");
+  }
+  mostrarResumen();
+}
+
+function confirmarCompra() {
+  alert("¡Gracias por tu compra!");
+  localStorage.removeItem('carrito');
+  window.location.href = "index.html"; // Redirige a la página principal
+}
+
+mostrarResumen();
+</script>
 </body>
 </html>
