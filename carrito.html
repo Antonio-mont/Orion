@@ -42,7 +42,7 @@
       let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
       let contenedor = document.getElementById('contenedor-carrito');
       let total = 0;
-      contenedor.innerHTML = ""; // Limpiar contenido previo
+      contenedor.innerHTML = "";
 
       if (carrito.length === 0) {
         contenedor.innerHTML = "<p style='grid-column:1/-1; text-align:center;'>Tu carrito está vacío.</p>";
@@ -65,7 +65,7 @@
           <img src="${item.imagen}" alt="${item.nombre}" 
                style="max-width:100%; max-height:150px; object-fit:contain; border-radius:8px; margin-bottom:10px; display:block; margin-left:auto; margin-right:auto;">
           <h3 style="font-size:18px; margin:10px 0;">${item.nombre}</h3>
-          <p style="color:#555; font-size:14px; margin:5px 0 10px;">${item.descripcion || 'Sin descripción disponible'}</p>
+          <p style="color:#555; font-size:14px; margin:5px 0 10px;">${item.descripcion ? item.descripcion : 'Sin descripción disponible'}</p>
           <p style="font-size:16px; font-weight:bold; margin:5px 0;">Precio: $${item.precio}</p>
           <div style="margin:10px 0;">
             <button onclick="cambiarCantidad(${index}, -1)" style="padding:5px 10px;">-</button>
@@ -100,7 +100,8 @@
       mostrarCarrito();
     }
 
-    mostrarCarrito();
+    // Ejecutar al cargar la página
+    document.addEventListener("DOMContentLoaded", mostrarCarrito);
   </script>
 </body>
 </html>
