@@ -1,6 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Detalle de Producto - Orion & CO</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f8f3eb;
+    }
+    nav {
+      background: #e2b577;
+      padding: 15px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    nav .logo a {
+      font-size: 22px;
+      font-weight: bold;
+      text-decoration: none;
+      color: inherit;
+    }
+    nav .titulo {
+      font-size: 18px;
+      font-weight: bold;
+    }
+    .container {
+      display: flex;
+      gap: 20px;
+      padding: 30px;
+      max-width: 1000px;
+      margin: auto;
+    }
+    .imagenes img {
+      max-width: 300px;
+      height: auto;
+      border-radius: 10px;
+    }
+    .detalles {
+      flex: 1;
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    .detalles h2 {
+      margin-top: 0;
+    }
+    .detalles ul {
+      padding-left: 20px;
+    }
+    .boton-carrito {
+      background: #c5ab83;
+      color: #fff;
+      padding: 12px 25px;
+      border-radius: 8px;
+      border: none;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Barra superior -->
+  <nav>
+    <div class="logo">
+      <a href="menu.html">🛍️ Orion & CO.com</a>
+    </div>
+    <div class="titulo">Detalle del producto</div>
+  </nav>
+
   <div class="container">
     <div class="imagenes">
-      <img id="producto-imagen" src="" alt="Producto" style="max-width:300px;height:auto;">
+      <img id="producto-imagen" src="" alt="Producto">
     </div>
 
     <div class="detalles">
@@ -146,6 +223,8 @@
       }
 
       localStorage.setItem('carrito', JSON.stringify(carrito));
-      window.location.href = 'carrito.html';
+      alert('Producto agregado al carrito.');
     }
   </script>
+</body>
+</html>
