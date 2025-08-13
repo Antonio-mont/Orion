@@ -22,6 +22,10 @@
       margin: 0;
       font-weight: bold;
     }
+    header h1 a {
+      text-decoration: none;
+      color: inherit;
+    }
     .container {
       max-width: 1000px;
       margin: 30px auto;
@@ -112,7 +116,7 @@
 </head>
 <body>
   <header>
-    <h1>🛍️ Orion & CO.com</h1>
+    <h1><a href="menu.html">🛍️ Orion & CO.com</a></h1>
     <div>Pago</div>
   </header>
 
@@ -193,13 +197,10 @@
     function confirmarCompra() {
       alert("¡Gracias por tu compra!");
       localStorage.removeItem('carrito');
-      window.location.href = "index.html"; // Cambiado para redirigir a la página principal
+      window.location.href = "index.html"; // Redirige a la página principal
     }
 
     mostrarResumen();
   </script>
 </body>
 </html>
-
-
-
