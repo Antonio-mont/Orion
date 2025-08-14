@@ -1,202 +1,369 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Pagar - Orion & CO</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #f8f3eb;
-    }
-    header {
-      background: #e2b577;
-      padding: 15px 30px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    header h1 {
-      font-size: 22px;
-      margin: 0;
-      font-weight: bold;
-    }
-    .container {
-      max-width: 1000px;
-      margin: 30px auto;
-      padding: 20px;
-      background: #fff;
-      border-radius: 10px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    }
-    h2 {
-      margin-bottom: 20px;
-      color: #5e4b30;
-      text-align: center;
-    }
-    .resumen {
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-    }
-    .producto {
-      display: flex;
-      align-items: center;
-      gap: 15px;
-      border-bottom: 1px solid #ddd;
-      padding-bottom: 15px;
-    }
-    .producto img {
-      width: 80px;
-      height: 80px;
-      object-fit: contain;
-      border-radius: 8px;
-    }
-    .producto-info {
-      flex: 1;
-    }
-    .totales {
-      text-align: right;
-      margin-top: 20px;
-      font-size: 18px;
-      color: #5e4b30;
-    }
-    .totales p {
-      margin: 8px 0;
-    }
-    .boton-confirmar {
-      display: block;
-      width: 100%;
-      background: #c5ab83;
-      color: #fff;
-      padding: 15px;
-      border: none;
-      font-size: 18px;
-      font-weight: bold;
-      border-radius: 8px;
-      cursor: pointer;
-      margin-top: 25px;
-    }
-    .boton-confirmar:hover {
-      background: #b2956f;
-    }
-    .cupon {
-      margin-top: 20px;
-      display: flex;
-      gap: 10px;
-      justify-content: flex-end;
-    }
-    .cupon input {
-      padding: 8px;
-      border-radius: 6px;
-      border: 1px solid #ccc;
-      flex: 1;
-      max-width: 200px;
-    }
-    .cupon button {
-      background: #e2b577;
-      border: none;
-      padding: 8px 15px;
-      border-radius: 6px;
-      cursor: pointer;
-      font-weight: bold;
-    }
-    footer {
-      text-align: center;
-      margin: 30px 0;
-      font-size: 14px;
-      color: #555;
-    }
-  </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Pagar - Orion & CO</title>
+<style>
+  body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f8f3eb;
+  }
+  header {
+    background: #e2b577;
+    padding: 15px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  header h1 {
+    font-size: 22px;
+    margin: 0;
+    font-weight: bold;
+  }
+  .container {
+    max-width: 1000px;
+    margin: 30px auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  }
+  h2 {
+    margin-bottom: 20px;
+    color: #5e4b30;
+    text-align: center;
+  }
+  .resumen {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .producto {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 15px;
+  }
+  .producto img {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+    border-radius: 8px;
+  }
+  .producto-info {
+    flex: 1;
+  }
+  .totales {
+    text-align: right;
+    margin-top: 20px;
+    font-size: 18px;
+    color: #5e4b30;
+  }
+  .totales p {
+    margin: 8px 0;
+  }
+  .boton-confirmar {
+    display: block;
+    width: 100%;
+    background: #c5ab83;
+    color: #fff;
+    padding: 15px;
+    border: none;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 25px;
+  }
+  .boton-confirmar:hover {
+    background: #b2956f;
+  }
+  .cupon {
+    margin-top: 20px;
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+  }
+  .cupon input {
+    padding: 8px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    flex: 1;
+    max-width: 200px;
+  }
+  .cupon button {
+    background: #e2b577;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+  }
+  footer {
+    text-align: center;
+    margin: 30px 0;
+    font-size: 14px;
+    color: #555;
+  }
+  /* Estilo calcular envío */
+  .calcular-envio {
+    margin: 25px 0;
+    padding: 15px;
+    background: #f8f3eb;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+  }
+  .tabs {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 10px;
+  }
+  .tabs span {
+    flex: 1;
+    text-align: center;
+    padding: 8px 0;
+    cursor: pointer;
+    font-weight: bold;
+    border-bottom: 3px solid transparent;
+    transition: all 0.3s ease;
+  }
+  .tabs .activo {
+    color: #b20e0e;
+    border-bottom: 3px solid #b20e0e;
+  }
+  .envio-opciones {
+    display: none;
+    animation: fadeIn 0.3s ease;
+  }
+  .envio-opciones.activo {
+    display: block;
+  }
+  select, button {
+    width: 100%;
+    padding: 8px;
+    margin-top: 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+  }
+  button {
+    background: #e2b577;
+    color: #fff;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+  }
+  button:hover {
+    background: #b2956f;
+  }
+  @keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity: 1;}
+  }
+</style>
 </head>
 <body>
-  <header>
-    <h1><a href="menu.html" style="text-decoration:none; color:inherit;">🛍️ Orion & CO.com</a></h1>
-    <div>Pago</div>
-  </header>
 
-  <div class="container">
-    <h2>Revisa tu compra</h2>
-    <div class="resumen" id="resumen-carrito">
-      <!-- Productos insertados con JS -->
+<header>
+  <h1><a href="menu.html" style="text-decoration:none; color:inherit;">🛍️ Orion & CO.com</a></h1>
+  <div>Pago</div>
+</header>
+
+<div class="container">
+  <h2>Revisa tu compra</h2>
+  <div class="resumen" id="resumen-carrito"></div>
+
+  <!-- Calcular envío -->
+  <div class="calcular-envio">
+    <div class="tabs">
+      <span class="activo" onclick="cambiarTab('domicilio')">Envío a domicilio</span>
+      <span onclick="cambiarTab('tienda')">Recoger en tienda</span>
     </div>
 
-    <div class="cupon">
-      <input type="text" id="codigo-cupon" placeholder="Código de cupón" />
-      <button onclick="aplicarCupon()">Aplicar</button>
+    <!-- Envío a domicilio -->
+    <div id="tab-domicilio" class="envio-opciones activo">
+      <select id="departamento" onchange="cargarMunicipios()">
+        <option value="">Departamento</option>
+        <option value="San Salvador">San Salvador</option>
+        <option value="La Libertad">La Libertad</option>
+        <option value="Santa Ana">Santa Ana</option>
+      </select>
+
+      <select id="municipio" onchange="cargarDistritos()">
+        <option value="">Municipio</option>
+      </select>
+
+      <select id="distrito">
+        <option value="">Distrito</option>
+      </select>
+
+      <button onclick="calcularEnvio()">Calcular envío</button>
     </div>
 
-    <div class="totales">
-      <p>Subtotal: <span id="subtotal">$0</span></p>
-      <p>Total: <strong id="total">$0</strong></p>
+    <!-- Recoger en tienda -->
+    <div id="tab-tienda" class="envio-opciones">
+      <p style="text-align:center;">Puedes recoger tu pedido en nuestra sucursal sin costo adicional.</p>
+      <button onclick="calcularEnvio('tienda')">Confirmar recogida</button>
     </div>
-
-    <button class="boton-confirmar" onclick="confirmarCompra()">Confirmar compra</button>
   </div>
 
-  <footer>
-    © 2025 Orion & CO - Pagos seguros con Visa / Mastercard
-  </footer>
+  <div class="cupon">
+    <input type="text" id="codigo-cupon" placeholder="Código de cupón" />
+    <button onclick="aplicarCupon()">Aplicar</button>
+  </div>
 
-  <script>
-    let descuento = 0;
+  <div class="totales">
+    <p>Subtotal: <span id="subtotal">$0</span></p>
+    <p>Envío: <span id="costo-envio">$0</span></p>
+    <p>Total: <strong id="total">$0</strong></p>
+  </div>
 
-    function mostrarResumen() {
-      let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
-      let resumen = document.getElementById('resumen-carrito');
-      let subtotal = 0;
-      resumen.innerHTML = "";
+  <button class="boton-confirmar" onclick="confirmarCompra()">Confirmar compra</button>
+</div>
 
-      if (carrito.length === 0) {
-        resumen.innerHTML = "<p>No tienes productos en el carrito.</p>";
-        document.getElementById('subtotal').innerText = "$0";
-        document.getElementById('total').innerText = "$0";
-        return;
-      }
+<footer>
+  © 2025 Orion & CO - Pagos seguros con Visa / Mastercard
+</footer>
 
-      carrito.forEach(item => {
-        let totalItem = item.precio * item.cantidad;
-        subtotal += totalItem;
+<script>
+let descuento = 0;
+let envio = 0;
+let subtotalGlobal = 0;
 
-        let div = document.createElement('div');
-        div.className = "producto";
-        div.innerHTML = `
-          <img src="${item.imagen}" alt="${item.nombre}" />
-          <div class="producto-info">
-            <p><strong>${item.nombre}</strong></p>
-            <p>Cantidad: ${item.cantidad}</p>
-            <p>$${item.precio} c/u</p>
-          </div>
-          <div><strong>$${totalItem}</strong></div>
-        `;
-        resumen.appendChild(div);
-      });
+// Datos de municipios y distritos
+const datosUbicacion = {
+  "San Salvador": {
+    "San Salvador": ["Centro", "Norte", "Sur", "Este", "Oeste"],
+    "Soyapango": ["Centro", "Santa Lucia", "San José"],
+    "Mejicanos": ["Centro", "San Miguel", "San Antonio"]
+  },
+  "La Libertad": {
+    "Santa Tecla": ["Centro", "Merliot", "Zona Alta"],
+    "Antiguo Cuscatlán": ["Centro", "Residencial", "Universidad"],
+    "Colón": ["Centro", "San Andrés", "Lourdes"]
+  },
+  "Santa Ana": {
+    "Santa Ana": ["Centro", "Metropolitano", "Plan de la Laguna"],
+    "Metapán": ["Centro", "El Brujo", "San Juan"],
+    "Chalchuapa": ["Centro", "Los Pinos", "San Sebastián"]
+  }
+};
 
-      document.getElementById('subtotal').innerText = "$" + subtotal;
-      let total = subtotal - descuento;
-      document.getElementById('total').innerText = "$" + total;
-    }
+function mostrarResumen() {
+  let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+  let resumen = document.getElementById('resumen-carrito');
+  subtotalGlobal = 0;
+  resumen.innerHTML = "";
 
-    function aplicarCupon() {
-      let codigo = document.getElementById('codigo-cupon').value.trim();
-      if (codigo.toLowerCase() === "descuento10") {
-        descuento = 10;
-        alert("Cupón aplicado: -$10");
-      } else {
-        descuento = 0;
-        alert("Cupón no válido");
-      }
-      mostrarResumen();
-    }
+  if (carrito.length === 0) {
+    resumen.innerHTML = "<p>No tienes productos en el carrito.</p>";
+    actualizarTotales();
+    return;
+  }
 
-    function confirmarCompra() {
-      alert("¡Gracias por tu compra!");
-      localStorage.removeItem('carrito');
-      window.location.href = "menu.html"; // Cambiado para redirigir a la página principal
-    }
+  carrito.forEach(item => {
+    let totalItem = item.precio * item.cantidad;
+    subtotalGlobal += totalItem;
 
-    mostrarResumen();
-  </script>
+    let div = document.createElement('div');
+    div.className = "producto";
+    div.innerHTML = `
+      <img src="${item.imagen}" alt="${item.nombre}" />
+      <div class="producto-info">
+        <p><strong>${item.nombre}</strong></p>
+        <p>Cantidad: ${item.cantidad}</p>
+        <p>$${item.precio} c/u</p>
+      </div>
+      <div><strong>$${totalItem}</strong></div>
+    `;
+    resumen.appendChild(div);
+  });
+
+  actualizarTotales();
+}
+
+function actualizarTotales() {
+  document.getElementById('subtotal').innerText = "$" + subtotalGlobal;
+  document.getElementById('costo-envio').innerText = "$" + envio;
+  let total = subtotalGlobal - descuento + envio;
+  document.getElementById('total').innerText = "$" + total;
+}
+
+function aplicarCupon() {
+  let codigo = document.getElementById('codigo-cupon').value.trim();
+  if (codigo.toLowerCase() === "descuento10") {
+    descuento = 10;
+    alert("Cupón aplicado: -$10");
+  } else {
+    descuento = 0;
+    alert("Cupón no válido");
+  }
+  actualizarTotales();
+}
+
+function cambiarTab(tab) {
+  document.querySelectorAll('.tabs span').forEach(el => el.classList.remove('activo'));
+  document.querySelectorAll('.envio-opciones').forEach(el => el.classList.remove('activo'));
+  document.querySelector(`.tabs span[onclick*="${tab}"]`).classList.add('activo');
+  document.getElementById(`tab-${tab}`).classList.add('activo');
+}
+
+function cargarMunicipios() {
+  let dep = document.getElementById('departamento').value;
+  let municipioSelect = document.getElementById('municipio');
+  municipioSelect.innerHTML = '<option value="">Municipio</option>';
+  document.getElementById('distrito').innerHTML = '<option value="">Distrito</option>';
+
+  if (datosUbicacion[dep]) {
+    Object.keys(datosUbicacion[dep]).forEach(m => {
+      let opt = document.createElement('option');
+      opt.value = m;
+      opt.textContent = m;
+      municipioSelect.appendChild(opt);
+    });
+  }
+}
+
+function cargarDistritos() {
+  let dep = document.getElementById('departamento').value;
+  let mun = document.getElementById('municipio').value;
+  let distritoSelect = document.getElementById('distrito');
+  distritoSelect.innerHTML = '<option value="">Distrito</option>';
+
+  if (datosUbicacion[dep] && datosUbicacion[dep][mun]) {
+    datosUbicacion[dep][mun].forEach(d => {
+      let opt = document.createElement('option');
+      opt.value = d;
+      opt.textContent = d;
+      distritoSelect.appendChild(opt);
+    });
+  }
+}
+
+function calcularEnvio(tipo = 'domicilio') {
+  if (tipo === 'tienda') {
+    envio = 0;
+    alert("Recoger en tienda: Sin costo de envío");
+  } else {
+    let dep = document.getElementById('departamento').value;
+    if (!dep) { alert("Selecciona un departamento"); return; }
+    let precios = { "San Salvador": 5, "La Libertad": 6, "Santa Ana": 7 };
+    envio = precios[dep] || 5;
+    alert(`Costo de envío a ${dep}: $${envio}`);
+  }
+  actualizarTotales();
+}
+
+function confirmarCompra() {
+  alert("¡Gracias por tu compra!");
+  localStorage.removeItem('carrito');
+  window.location.href = "menu.html";
+}
+
+mostrarResumen();
+</script>
+
 </body>
 </html>
