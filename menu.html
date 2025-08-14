@@ -1,4 +1,4 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>  
 <html lang="es">
 <head>
   <meta charset="UTF-8" />
@@ -9,7 +9,7 @@
     body { font-family: Arial, sans-serif; background-color: #f8f3eb; color: #333; }
 
     .top-bar { background-color: #e6cc9f; text-align: center; padding: 10px; font-weight: bold; font-size: 14px; }
-    .navbar { display: flex; align-items: center; background-color: #e2b577; padding: 15px 20px; position: sticky; top: 0; gap: 15px; }
+    .navbar { display: flex; align-items: center; background-color: #e2b577; padding: 15px 20px; position: sticky; top: 0; gap: 15px; z-index: 50; }
     .logo { font-size: 20px; font-weight: bold; flex-shrink: 0; }
     .search-container { position: relative; flex-grow: 1; }
     .search { width: 100%; padding: 8px 12px; border: 1px solid #ccc; border-radius: 5px; font-size: 16px; }
@@ -22,17 +22,112 @@
     #sugerencias div { padding: 8px; cursor: pointer; }
     #sugerencias div:hover { background: #f0f0f0; }
     #contador-carrito { position: absolute; top: -5px; right: -10px; background: red; color: white; font-size: 12px; padding: 2px 6px; border-radius: 50%; }
+
+    /* ======= HERO CARRUSEL ======= */
+    .hero-carousel {
+      position: relative;
+      max-width: 1200px;
+      margin: 16px auto 0;
+      overflow: hidden;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+      background: #000;
+    }
+    .hero-track {
+      display: flex;
+      transition: transform 0.55s ease-in-out;
+      will-change: transform;
+    }
+    .hero-slide {
+      min-width: 100%;
+      height: 420px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      user-select: none;
+      -webkit-user-drag: none;
+    }
+    .hero-caption {
+      position: absolute;
+      left: 0; right: 0; bottom: 0;
+      padding: 18px 20px;
+      background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,.55) 60%, rgba(0,0,0,.7) 100%);
+      color: #fff;
+      font-weight: 600;
+      letter-spacing: .2px;
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 12px;
+    }
+    .hero-cta {
+      background: #e2b577;
+      color: #222;
+      border: none;
+      padding: 8px 12px;
+      border-radius: 8px;
+      font-weight: 700;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+    .hero-cta:hover { background: #d3a866; }
+
+    .hero-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(0,0,0,0.4);
+      color: #fff;
+      border: none;
+      width: 40px; height: 40px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: grid; place-items: center;
+      font-size: 20px;
+      z-index: 5;
+    }
+    .hero-nav:hover { background: rgba(0,0,0,0.6); }
+    .hero-prev { left: 12px; }
+    .hero-next { right: 12px; }
+
+    .hero-dots {
+      position: absolute;
+      left: 0; right: 0; bottom: 10px;
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      z-index: 4;
+    }
+    .hero-dot {
+      width: 8px; height: 8px; border-radius: 999px;
+      background: rgba(255,255,255,0.5);
+      border: none; cursor: pointer;
+    }
+    .hero-dot.active { background: #e2b577; }
+
+    @media (max-width: 768px) {
+      .hero-slide { height: 260px; }
+      .hero-caption { font-size: 14px; padding: 14px; }
+    }
+
+    /* ======= CONTENIDO ======= */
     .editable { background-color: #f8f8f8; padding: 30px 20px 50px; max-width: 1200px; margin: 0 auto; text-align: center; }
     .editable h2 { margin-bottom: 5px; font-size: 24px; color: #5e4b30; }
     .editable p { margin-bottom: 20px; color: #555; max-width: 600px; margin-left: auto; margin-right: auto; }
     .productos-destacados { text-align: center; margin-top: 15px; }
-    .fila-productos { display: flex; gap: 20px; overflow-x: auto; padding-bottom: 10px; justify-content: center; max-width: 100%; margin: 0 auto; }
-    .producto { flex: 0 0 auto; width: 200px; background: #fff; border-radius: 8px; padding: 10px; box-shadow: 0 2px 6px rgba(0,0,0,0.1); text-align: center; }
+    .fila-productos { display: flex; gap: 20px; overflow-x: auto; padding-bottom: 10px; justify-content: center; max-width: 100%; margin: 0 auto; scroll-snap-type: x mandatory; }
+    .producto { flex: 0 0 auto; width: 200px; background: #fff; border-radius: 8px; padding: 10px; box-shadow: 0 2px 6px rgba(0,0,0,0.1); text-align: center; scroll-snap-align: start; }
     .producto img { width: 100%; border-radius: 5px; }
     .producto h3 { margin: 10px 0 5px; font-size: 16px; }
     .producto .precio { color: #b38e5d; font-weight: bold; }
     .fila-productos::-webkit-scrollbar { height: 8px; }
     .fila-productos::-webkit-scrollbar-thumb { background: #ccc; border-radius: 4px; }
+
     .main-categories { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; padding: 30px 20px; max-width: 1200px; margin: 40px auto; }
     .category-card { background-color: #fff; border-radius: 10px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.08); transition: transform 0.2s ease; text-align: center; text-decoration: none; color: #333; }
     .category-card:hover { transform: scale(1.02); }
@@ -60,6 +155,36 @@
     <span id="contador-carrito" style="display:none;">0</span>
   </div>
 </nav>
+
+<!-- ======= CARRUSEL HERO (agregado) ======= -->
+<section class="hero-carousel" aria-label="Promociones destacadas">
+  <button class="hero-nav hero-prev" aria-label="Anterior">&#10094;</button>
+  <div class="hero-track" id="heroTrack">
+    <article class="hero-slide">
+      <img src="https://www.flashfly.net/wp/wp-content/uploads/2024/09/ps5-pro-1.jpg" alt="Tecnología en oferta" />
+      <div class="hero-caption">
+        <span>MEJORES PRODUCTOS EN TECNOLOGÍA</span>
+        <a href="Sección Tecnología.html"><button class="hero-cta">Ver ofertas</button></a>
+      </div>
+    </article>
+    <article class="hero-slide">
+      <img src="https://fimgs.net/himg/o.DG9CDS3sThK.jpg" alt="Belleza y cuidado personal" />
+      <div class="hero-caption">
+        <span>ESTÉTICA Y FRAGANCIAS TOP</span>
+        <a href="Sección Estetica.html"><button class="hero-cta">Descubrir</button></a>
+      </div>
+    </article>
+    <article class="hero-slide">
+      <img src="https://i.pinimg.com/originals/01/79/7f/01797f1c9076b96c7fec2aea30a2b67a.jpg" alt="LEBRON" />
+      <div class="hero-caption">
+        <span>MEJORES PRODUCTOS PARA ATLETAS</span>
+        <a href="Sección Deportes.html"><button class="hero-cta">Ver colección</button></a>
+      </div>
+    </article>
+  </div>
+  <button class="hero-nav hero-next" aria-label="Siguiente">&#10095;</button>
+  <div class="hero-dots" id="heroDots" aria-hidden="true"></div>
+</section>
 
 <section class="editable">
   <h2>Nuestros productos</h2>
@@ -119,6 +244,7 @@
 </section>
 
 <script>
+/* ======= BUSCADOR / SUGERENCIAS (original) ======= */
 const productos = [
   { nombre: "1 Million", url: "1 Million.html" },
   { nombre: "Anta Kai 1", url: "Anta Kai 1.html" },
@@ -211,6 +337,106 @@ function actualizarContadorCarrito() {
   }
 }
 actualizarContadorCarrito();
+
+/* ======= HERO CARRUSEL (nuevo) ======= */
+(function initHeroCarousel(){
+  const track = document.getElementById('heroTrack');
+  if (!track) return;
+
+  const slides = Array.from(track.querySelectorAll('.hero-slide'));
+  const prev = document.querySelector('.hero-prev');
+  const next = document.querySelector('.hero-next');
+  const dotsWrap = document.getElementById('heroDots');
+  let heroIndex = 0;
+  let timerId = null;
+  const AUTOPLAY_MS = 4500;
+
+  // Crear dots
+  slides.forEach((_, i) => {
+    const b = document.createElement('button');
+    b.className = 'hero-dot' + (i === 0 ? ' active' : '');
+    b.setAttribute('aria-label', 'Ir al slide ' + (i+1));
+    b.addEventListener('click', () => goTo(i, true));
+    dotsWrap.appendChild(b);
+  });
+  const dots = Array.from(dotsWrap.children);
+
+  function updateUI() {
+    track.style.transform = `translateX(-${heroIndex * 100}%)`;
+    dots.forEach((d, i) => d.classList.toggle('active', i === heroIndex));
+  }
+
+  function goTo(i, user = false) {
+    heroIndex = (i + slides.length) % slides.length;
+    updateUI();
+    if (user) restartAutoplay();
+  }
+
+  function nextSlide() { goTo(heroIndex + 1); }
+  function prevSlide() { goTo(heroIndex - 1); }
+
+  prev.addEventListener('click', prevSlide);
+  next.addEventListener('click', nextSlide);
+
+  // Autoplay
+  function startAutoplay() {
+    stopAutoplay();
+    timerId = setInterval(nextSlide, AUTOPLAY_MS);
+  }
+  function stopAutoplay() {
+    if (timerId) clearInterval(timerId);
+    timerId = null;
+  }
+  function restartAutoplay() {
+    stopAutoplay();
+    startAutoplay();
+  }
+  startAutoplay();
+
+  // Pausa al pasar el mouse
+  const hero = document.querySelector('.hero-carousel');
+  hero.addEventListener('mouseenter', stopAutoplay);
+  hero.addEventListener('mouseleave', startAutoplay);
+
+  // Pausar si la pestaña no está visible
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) stopAutoplay(); else startAutoplay();
+  });
+
+  // Swipe táctil
+  let startX = 0, deltaX = 0, isDragging = false;
+  const THRESHOLD = 50;
+
+  function onTouchStart(e) {
+    isDragging = true;
+    startX = e.touches ? e.touches[0].clientX : e.clientX;
+    deltaX = 0;
+    stopAutoplay();
+  }
+  function onTouchMove(e) {
+    if (!isDragging) return;
+    const x = e.touches ? e.touches[0].clientX : e.clientX;
+    deltaX = x - startX;
+  }
+  function onTouchEnd() {
+    if (!isDragging) return;
+    isDragging = false;
+    if (deltaX > THRESHOLD) prevSlide();
+    else if (deltaX < -THRESHOLD) nextSlide();
+    startAutoplay();
+  }
+
+  hero.addEventListener('touchstart', onTouchStart, {passive: true});
+  hero.addEventListener('touchmove', onTouchMove, {passive: true});
+  hero.addEventListener('touchend', onTouchEnd);
+  // soporte mouse drag (opcional)
+  hero.addEventListener('mousedown', (e)=>{ onTouchStart(e); e.preventDefault(); });
+  window.addEventListener('mousemove', onTouchMove);
+  window.addEventListener('mouseup', onTouchEnd);
+
+  // Inicializar UI
+  updateUI();
+})();
 </script>
 </body>
 </html>
